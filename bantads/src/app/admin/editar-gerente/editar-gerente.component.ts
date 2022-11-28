@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Gerente } from 'src/app/shared/models/gerente.model';
+import { AdminService } from '../services';
 
 @Component({
   selector: 'app-editar-gerente',
@@ -7,9 +11,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditarGerenteComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('formGerente') formGerente!: NgForm;
+  gerente!: Gerente;
+
+  constructor(
+    private adminService: AdminService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    let id = +this.route.snapshot.params['id'];
+    const res = this.adminService.buscarPorId(id);
+    if(res !== undefined) this.gerente = res;
+    else throw new Error('Gerente não encontrado: id = ' + id);
+  }
+
+  atualizar() : void{
+    if(this.formGerente.form.valid){
+      this.adminService.atualizar(this.gerente);
+      this.router.navigate(['/admin/listar-gerente']);
+    }
   }
 
 }

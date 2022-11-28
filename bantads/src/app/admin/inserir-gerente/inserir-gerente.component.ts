@@ -26,7 +26,7 @@ export class InserirGerenteComponent implements OnInit {
   inserir() : void{
     if(this.formGerente.form.valid){
       this.adminService.inserir(this.gerente);
-      this.router.navigate(['/admin']);
+      this.router.navigate(['/admin/listar-gerente']);
     }
   }
 
