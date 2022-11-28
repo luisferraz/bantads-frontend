@@ -1,6 +1,8 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { InserirGerenteComponent } from './admin/inserir-gerente/inserir-gerente.component';
 import { ListarGerentesComponent } from './admin/listar-gerentes/listar-gerentes.component';
+import { RelatorioClientesComponent } from './admin/relatorio-clientes/relatorio-clientes.component';
 import { TelaInicialComponent } from './admin/tela-inicial/tela-inicial.component';
 
 const routes: Routes = [
@@ -21,6 +23,14 @@ const routes: Routes = [
     path: 'admin/listar-gerente',
     component : ListarGerentesComponent
   },
+  {
+    path: 'admin/novo-gerente',
+    component: InserirGerenteComponent
+  },
+  {
+    path:'admin/relatorio-clientes',
+    component: RelatorioClientesComponent
+  }
 ];
 
 @NgModule({
