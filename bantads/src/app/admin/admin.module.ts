@@ -6,6 +6,7 @@ import { InserirGerenteComponent } from './inserir-gerente/inserir-gerente.compo
 import { RemoverGerenteComponent } from './remover-gerente/remover-gerente.component';
 import { ListarGerentesComponent } from './listar-gerentes/listar-gerentes.component';
 import { EditarGerenteComponent } from './editar-gerente/editar-gerente.component';
+import { AdminService } from './services';
 
 
 
@@ -20,6 +21,9 @@ import { EditarGerenteComponent } from './editar-gerente/editar-gerente.componen
   ],
   imports: [
     CommonModule
+  ],
+  providers: [
+    AdminService
   ]
 })
 export class AdminModule { }
