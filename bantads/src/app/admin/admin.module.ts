@@ -6,6 +6,9 @@ import { InserirGerenteComponent } from './inserir-gerente/inserir-gerente.compo
 import { RemoverGerenteComponent } from './remover-gerente/remover-gerente.component';
 import { ListarGerentesComponent } from './listar-gerentes/listar-gerentes.component';
 import { EditarGerenteComponent } from './editar-gerente/editar-gerente.component';
+import { AdminService } from './services';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +22,12 @@ import { EditarGerenteComponent } from './editar-gerente/editar-gerente.componen
     EditarGerenteComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    FormsModule,
+  ],
+  providers: [
+    AdminService
   ]
 })
 export class AdminModule { }
