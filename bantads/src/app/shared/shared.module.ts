@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import { NumericoDirective } from './directives';
 
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+  declarations: [NumericoDirective],
+  exports: [NumericoDirective],
 })
-export class SharedModule { }
+export class SharedModule {}
