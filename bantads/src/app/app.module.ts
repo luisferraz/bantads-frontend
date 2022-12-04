@@ -21,7 +21,7 @@ import { SharedModule } from './shared';
     AdminModule,
     ClienteModule,
     GerenteModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     AdminService,
