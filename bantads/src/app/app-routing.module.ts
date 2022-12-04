@@ -1,41 +1,17 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EditarGerenteComponent } from './admin/editar-gerente/editar-gerente.component';
-import { InserirGerenteComponent } from './admin/inserir-gerente/inserir-gerente.component';
-import { ListarGerentesComponent } from './admin/listar-gerentes/listar-gerentes.component';
-import { RelatorioClientesComponent } from './admin/relatorio-clientes/relatorio-clientes.component';
-import { TelaInicialComponent } from './admin/tela-inicial/tela-inicial.component';
+import { AdminRoutes } from './admin/admin-routing.module';
+import { LoginRoutes } from './auth/auth-routing.module';
+
 
 const routes: Routes = [
   {
     path : '',
-    redirectTo: 'admin/inicio',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
-  {
-    path: 'admin',
-    redirectTo: 'admin/inicio'
-  },
-  {
-    path: 'admin/inicio',
-    component: TelaInicialComponent
-  },
-  {
-    path: 'admin/listar-gerente',
-    component : ListarGerentesComponent
-  },
-  {
-    path: 'admin/editar-gerente/:id',
-    component: EditarGerenteComponent
-  },
-  {
-    path: 'admin/novo-gerente',
-    component: InserirGerenteComponent
-  },
-  {
-    path:'admin/relatorio-clientes',
-    component: RelatorioClientesComponent
-  }
+ ...AdminRoutes,
+ ...LoginRoutes
 ];
 
 @NgModule({
