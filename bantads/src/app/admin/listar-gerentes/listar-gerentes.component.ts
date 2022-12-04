@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Gerente } from 'src/app/shared/models/gerente.model';
+
+import { Gerente } from 'src/app/shared';
+
 import { AdminService } from '../services';
 
 @Component({

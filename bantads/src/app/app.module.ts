@@ -5,6 +5,7 @@ import { AdminService } from './admin/services';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthModule } from './auth/auth.module';
 import { ClienteModule } from './cliente';
 import { ClienteService } from './cliente/services';
 import { GerenteModule } from './gerente';
@@ -21,7 +22,8 @@ import { SharedModule } from './shared';
     AdminModule,
     ClienteModule,
     GerenteModule,
-    SharedModule
+    SharedModule,
+    AuthModule
   ],
   providers: [
     AdminService,
