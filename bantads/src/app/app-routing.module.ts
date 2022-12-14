@@ -2,16 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminRoutes } from './admin/admin-routing.module';
 import { LoginRoutes } from './auth/auth-routing.module';
+import { ClienteRoutes } from './cliente/cliente-routing.module';
 
 
 const routes: Routes = [
   {
-    path : '',
+    path: '',
     redirectTo: 'login',
     pathMatch: 'full',
   },
- ...AdminRoutes,
- ...LoginRoutes
+  ...AdminRoutes,
+  ...LoginRoutes,
+  ...ClienteRoutes
 ];
 
 @NgModule({
