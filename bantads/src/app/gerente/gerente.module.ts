@@ -5,7 +5,7 @@ import { AprovarClienteComponent } from './aprovar-cliente/aprovar-cliente.compo
 import { RejeitarClienteComponent } from './rejeitar-cliente/rejeitar-cliente.component';
 import { ConsultarTodosClientesComponent } from './consultar-todos-clientes/consultar-todos-clientes.component';
 import { ConsultarClienteComponent } from './consultar-cliente/consultar-cliente.component';
-import { ConsultarCincoMlehoreClientessComponent } from './consultar-cinco-mlehore-clientess/consultar-cinco-mlehore-clientess.component';
+import { ConsultarCincoMelhoresClientesComponent } from './consultar-cinco-melhores-clientes/consultar-cinco-melhores-clientes.component';
 
 
 
@@ -16,7 +16,7 @@ import { ConsultarCincoMlehoreClientessComponent } from './consultar-cinco-mleho
     RejeitarClienteComponent,
     ConsultarTodosClientesComponent,
     ConsultarClienteComponent,
-    ConsultarCincoMlehoreClientessComponent
+    ConsultarCincoMelhoresClientesComponent,
   ],
   imports: [
     CommonModule

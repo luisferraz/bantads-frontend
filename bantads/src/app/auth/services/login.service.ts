@@ -8,7 +8,7 @@ const LS_CHAVE: string = 'usuarioLogado';
   providedIn: 'root',
 })
 export class LoginService {
-  constructor() {}
+  constructor() { }
 
   public get usuarioLogado(): Usuario {
     let usu = localStorage[LS_CHAVE];

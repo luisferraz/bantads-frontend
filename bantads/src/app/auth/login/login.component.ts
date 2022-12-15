@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     if (this.loginService.usuarioLogado) {
-      this.router.navigate(['/admin/inicio']);
+      this.router.navigate(['/home']);
     }
   }
 

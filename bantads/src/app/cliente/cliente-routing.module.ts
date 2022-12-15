@@ -38,6 +38,6 @@ export const ClienteRoutes: Routes = [
     component: TelaInicialClienteComponent
   },
   {
-    path: 'cliente,',
+    path: 'cliente',
     redirectTo: 'cliente/inicial'
   }];
