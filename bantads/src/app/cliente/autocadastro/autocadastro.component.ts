@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Cliente } from 'src/app/shared';
+import { Endereco } from 'src/app/shared/models/endereco.model';
 
 @Component({
   selector: 'app-autocadastro',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AutocadastroComponent implements OnInit {
 
+  @ViewChild('formRegistro') formRegistro!: NgForm;
+
+  cliente: Cliente = new Cliente;
+  endereco: Endereco = new Endereco;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  registrar(): void{
+
+  }
+  
 }
