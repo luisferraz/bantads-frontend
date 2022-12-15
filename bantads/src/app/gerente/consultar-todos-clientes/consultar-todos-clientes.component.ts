@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Cliente } from 'src/app/shared';
 
 @Component({
   selector: 'app-consultar-todos-clientes',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./consultar-todos-clientes.component.css']
 })
 export class ConsultarTodosClientesComponent implements OnInit {
+
+  clientes : Cliente[] = [];
 
   constructor() { }
 

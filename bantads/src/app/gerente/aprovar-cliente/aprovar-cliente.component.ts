@@ -12,4 +12,6 @@ export class AprovarClienteComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  enviarSenha(){}
+
 }

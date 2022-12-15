@@ -12,4 +12,8 @@ export class RejeitarClienteComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  rejeitarCliente(){
+    
+  }
+
 }
