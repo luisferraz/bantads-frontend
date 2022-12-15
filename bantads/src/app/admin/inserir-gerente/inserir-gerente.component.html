@@ -31,75 +31,6 @@
       data-boxed-layout="full"
     >
       <!-- ============================================================== -->
-      <!-- Topbar header - style you can find in pages.scss -->
-      <!-- ============================================================== -->
-      <header class="topbar" data-navbarbg="skin5">
-        <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-          <div class="navbar-header" data-logobg="skin6">
-            <!-- ============================================================== -->
-            <!-- Logo -->
-            <!-- ============================================================== -->
-            <a class="navbar-brand" href="#">
-              <!-- Logo icon -->
-              <b class="logo-icon">
-                <!-- Dark Logo icon -->
-                <img src="assets/plugins/images/logo-icon.png" alt="homepage" />
-              </b>
-              <!--End Logo icon -->
-              <!-- Logo text -->
-              <span class="logo-text">
-                <!-- dark Logo text -->
-                <img src="assets/plugins/images/logo-text.png" alt="homepage" />
-              </span>
-            </a>
-            <!-- ============================================================== -->
-            <!-- End Logo -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- toggle and nav items -->
-            <!-- ============================================================== -->
-            <a
-              class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
-              href="javascript:void(0)"
-              ><i class="ti-menu ti-close"></i
-            ></a>
-          </div>
-          <!-- ============================================================== -->
-          <!-- End Logo -->
-          <!-- ============================================================== -->
-          <div
-            class="navbar-collapse collapse"
-            id="navbarSupportedContent"
-            data-navbarbg="skin5"
-          >
-            <!-- ============================================================== -->
-            <!-- Right side toggle and nav items -->
-            <!-- ============================================================== -->
-            <ul class="navbar-nav ms-auto d-flex align-items-center">
-              <!-- ============================================================== -->
-              <!-- User profile and search -->
-              <!-- ============================================================== -->
-              <li>
-                <a class="profile-pic" href="#">
-                  <img
-                    src="assets/plugins/images/users/varun.jpg"
-                    alt="user-img"
-                    width="36"
-                    class="img-circle"
-                  /><span class="text-white font-medium">Admin</span></a
-                >
-              </li>
-              <!-- ============================================================== -->
-              <!-- User profile and search -->
-              <!-- ============================================================== -->
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <!-- ============================================================== -->
-      <!-- End Topbar header -->
-      <!-- ============================================================== -->
-      <!-- ============================================================== -->
       <!-- Left Sidebar - style you can find in sidebar.scss  -->
       <!-- ============================================================== -->
       <aside class="left-sidebar" data-sidebarbg="skin6">
@@ -111,7 +42,18 @@
               <!-- User Profile-->
               <li class="sidebar-item pt-2">
                 <a
-                [routerLink]="['/admin']"
+                  [routerLink]="['/admin']"
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="#"
+                  aria-expanded="false"
+                >
+                  <i class="far fa-user" aria-hidden="true"></i>
+                  <span class="hide-menu">ADMIN</span>
+                </a>
+              </li>
+              <li class="sidebar-item pt-2">
+                <a
+                  [routerLink]="['/admin']"
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="#"
                   aria-expanded="false"
@@ -127,13 +69,13 @@
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   aria-expanded="false"
                 >
-                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <i class="fa fa-users" aria-hidden="true"></i>
                   <span class="hide-menu">Cadastrar Gerente</span>
                 </a>
               </li>
               <li class="sidebar-item">
                 <a
-                [routerLink]="['/admin/relatorio-clientes']"
+                  [routerLink]="['/admin/relatorio-clientes']"
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="#"
                   aria-expanded="false"
@@ -144,13 +86,24 @@
               </li>
               <li class="sidebar-item">
                 <a
-                [routerLink]="['/admin/listar-gerente']"
+                  [routerLink]="['/admin/listar-gerente']"
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="#"
                   aria-expanded="false"
                 >
-                  <i class="fa fa-font" aria-hidden="true"></i>
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
                   <span class="hide-menu">Editar Gerentes</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a
+                  [routerLink]="['/login']"
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="#"
+                  aria-expanded="false"
+                >
+                  <i class="fa fa-sign-out" aria-hidden="true"></i>
+                  <span class="hide-menu">LogOut</span>
                 </a>
               </li>
             </ul>
@@ -188,7 +141,7 @@
           <!-- RECENT SALES -->
           <!-- ============================================================== -->
           <div class="well">
-            <form #formGerente = "ngForm">
+            <form #formGerente="ngForm">
               <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input
@@ -202,9 +155,16 @@
                   minlength="2"
                   required
                 />
-                <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="alert alert-danger">
-                  <div [hidden]= "!nome.errors?.['required']" > Digite o nome do gerente.</div>
-                  <div [hidden]= "!nome.errors?.['minlenght']" > O nome deve conter ao menos 2 caracteres.</div>
+                <div
+                  *ngIf="nome.errors && (nome.dirty || nome.touched)"
+                  class="alert alert-danger"
+                >
+                  <div [hidden]="!nome.errors?.['required']">
+                    Digite o nome do gerente.
+                  </div>
+                  <div [hidden]="!nome.errors?.['minlenght']">
+                    O nome deve conter ao menos 2 caracteres.
+                  </div>
                 </div>
               </div>
               <div class="form-group">
@@ -220,9 +180,16 @@
                   minlength="2"
                   required
                 />
-                <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
-                  <div [hidden]= "!email.errors?.['required']" > Digite o email do gerente.</div>
-                  <div [hidden]= "!email.errors?.['minlenght']" > O email deve conter ao menos 2 caracteres.</div>
+                <div
+                  *ngIf="email.errors && (email.dirty || email.touched)"
+                  class="alert alert-danger"
+                >
+                  <div [hidden]="!email.errors?.['required']">
+                    Digite o email do gerente.
+                  </div>
+                  <div [hidden]="!email.errors?.['minlenght']">
+                    O email deve conter ao menos 2 caracteres.
+                  </div>
                 </div>
               </div>
               <div class="form-group">
@@ -239,8 +206,13 @@
                   mask="CPF_CNPJ"
                   required
                 />
-                <div *ngIf="cpf.errors && (cpf.dirty || cpf.touched) " class="alert alert-danger">
-                  <div [hidden]= "!cpf.errors?.['required']">Digite o cpf do gerente.</div>
+                <div
+                  *ngIf="cpf.errors && (cpf.dirty || cpf.touched)"
+                  class="alert alert-danger"
+                >
+                  <div [hidden]="!cpf.errors?.['required']">
+                    Digite o cpf do gerente.
+                  </div>
                 </div>
               </div>
               <div class="form-group">
@@ -258,19 +230,31 @@
                   mask="(d0)00000-0000"
                   required
                 />
-                <div *ngIf="telefone.errors && (telefone.dirty || telefone.touched)" class="alert alert-danger">
-                  <div [hidden]= "!telefone.errors?.['required']" > Digite o telefone do gerente.</div>
-                  <div [hidden]= "!telefone.errors?.['minlength']" > O telefone deve conter 11 caracteres.</div>
+                <div
+                  *ngIf="
+                    telefone.errors && (telefone.dirty || telefone.touched)
+                  "
+                  class="alert alert-danger"
+                >
+                  <div [hidden]="!telefone.errors?.['required']">
+                    Digite o telefone do gerente.
+                  </div>
+                  <div [hidden]="!telefone.errors?.['minlength']">
+                    O telefone deve conter 11 caracteres.
+                  </div>
                 </div>
               </div>
               <div class="form-group">
-                <button type="button" class="btn btn-primary" style="margin-right: 10px;"
-                (click)="inserir()"
-                [disabled]="!formGerente.form.valid">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  style="margin-right: 10px"
+                  (click)="inserir()"
+                  [disabled]="!formGerente.form.valid"
+                >
                   <i class="fa fa-save" aria-hidden="true"></i> Salvar
                 </button>
-                <a class="btn btn-secondary"
-                [routerLink]="['/admin'] ">
+                <a class="btn btn-secondary" [routerLink]="['/admin']">
                   <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
                 </a>
               </div>
