@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Login } from 'src/app/shared';
+import { Login, Usuario } from 'src/app/shared';
 import { LoginService } from '../services/login.service';
 
 @Component({
@@ -21,12 +21,12 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     if (this.loginService.usuarioLogado) {
-      this.router.navigate(['/admin/inicio']);
+      this.router.navigate([`${this.loginService.usuarioLogado.perfil?.toLowerCase()}`]);
     }
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
+    this.route.queryParams.subscribe((params: any) => {
       this.message = params['error'];
     });
   }
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         if (usu != null) {
           this.loginService.usuarioLogado = usu;
           this.loading = false;
-          this.router.navigate(['/home']);
+          this.router.navigate([`${usu.perfil?.toLowerCase()}`]);
         } else {
           this.message = 'Usuário/Senha inválidos.';
         }

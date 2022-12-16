@@ -20,7 +20,7 @@ import { NgxMaskModule } from 'ngx-mask';
     RejeitarClienteComponent,
     ConsultarTodosClientesComponent,
     ConsultarClienteComponent,
-    ConsultarCincoMelhoresClientesComponent
+    ConsultarCincoMelhoresClientesComponent,
   ],
   imports: [
     CommonModule,

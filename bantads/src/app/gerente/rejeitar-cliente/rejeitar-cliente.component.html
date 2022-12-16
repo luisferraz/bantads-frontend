@@ -16,137 +16,70 @@
 
 <body>
   <!-- ============================================================== -->
-  <!-- Main wrapper - style you can find in pages.scss -->
+  <!-- Page wrapper  -->
   <!-- ============================================================== -->
-  <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
-    data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+  <div class="page-wrapper">
     <!-- ============================================================== -->
-    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
-    <aside class="left-sidebar" data-sidebarbg="skin6">
-      <!-- Sidebar scroll-->
-      <div class="scroll-sidebar">
-        <!-- Sidebar navigation-->
-        <nav class="sidebar-nav">
-          <ul id="sidebarnav">
-            <!-- User Profile-->
-            <li class="sidebar-item pt-2">
-              <a [routerLink]="['/gerente']" class="sidebar-link waves-effect waves-dark sidebar-link" href="#"
-                aria-expanded="false">
-                <i class="far fa-user" aria-hidden="true"></i>
-                <span class="hide-menu">GERENTE</span>
-              </a>
-            </li>
-            <li class="sidebar-item pt-2">
-              <a [routerLink]="['/gerente']" class="sidebar-link waves-effect waves-dark sidebar-link" href="#"
-                aria-expanded="false">
-                <i class="far fa-clock" aria-hidden="true"></i>
-                <span class="hide-menu">Dashboard</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a [routerLink]="['/gerente/listar-clientes']" class="sidebar-link waves-effect waves-dark sidebar-link"
-                href="#" aria-expanded="false">
-                <i class="fa fa-table" aria-hidden="true"></i>
-                <span class="hide-menu">Listar todos os Clientes</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a [routerLink]="['/gerente/listar-5-melhores-clientes']"
-                class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <span class="hide-menu">Listar 5 melhores Clientes</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a [routerLink]="['/gerente/consultar-cliente']" class="sidebar-link waves-effect waves-dark sidebar-link"
-                href="#" aria-expanded="false">
-                <i class="fa fa-search" aria-hidden="true"></i>
-                <span class="hide-menu">Buscar Cliente</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a [routerLink]="['/login']" class="sidebar-link waves-effect waves-dark sidebar-link" href="#"
-                aria-expanded="false">
-                <i class="fa fa-sign-out" aria-hidden="true"></i>
-                <span class="hide-menu">LogOut</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <!-- End Sidebar navigation -->
-      </div>
-      <!-- End Sidebar scroll-->
-    </aside>
-    <!-- ============================================================== -->
-    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Page wrapper  -->
-    <!-- ============================================================== -->
-    <div class="page-wrapper">
-      <!-- ============================================================== -->
-      <!-- Bread crumb and right sidebar toggle -->
-      <!-- ============================================================== -->
-      <div class="page-breadcrumb bg-white">
-        <div class="row align-items-center">
-          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Rejeitar Cliente</h4>
-          </div>
+    <div class="page-breadcrumb bg-white">
+      <div class="row align-items-center">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+          <h4 class="page-title">Rejeitar Cliente</h4>
         </div>
-        <!-- /.col-lg-12 -->
       </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
       <!-- ============================================================== -->
-      <!-- End Bread crumb and right sidebar toggle -->
+      <!-- Listar clientes -->
       <!-- ============================================================== -->
-      <!-- ============================================================== -->
-      <!-- Container fluid  -->
-      <!-- ============================================================== -->
-      <div class="container-fluid">
-        <!-- ============================================================== -->
-        <!-- Listar clientes -->
-        <!-- ============================================================== -->
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">
-              Deseja recusar a solicitação de criação de conta deste cliente?
-            </h5>
-            <div class="form-group">
-              <label for="descricao">Escreva o motivo da recusa</label>
-              <textarea class="form-control" id="descricao" rows="4"></textarea>
-            </div>
-            <p class="card-text">
-              Ao confirmar, um e-mail será enviado ao cliente.<br>
-              Esta ação não poderá ser desfeita.
-            </p>
-            <button type="button" class="btn btn-primary" style="margin-right: 10px" (click)="rejeitarCliente()">
-              <i class="fa fa-save" aria-hidden="true"></i> Confirmar
-            </button>
-            <a class="btn btn-secondary" [routerLink]="['/gerente']">
-              <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
-            </a>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">
+            Deseja recusar a solicitação de criação de conta deste cliente?
+          </h5>
+          <div class="form-group">
+            <label for="descricao">Escreva o motivo da recusa</label>
+            <textarea class="form-control" id="descricao" rows="4"></textarea>
           </div>
+          <p class="card-text">
+            Ao confirmar, um e-mail será enviado ao cliente.<br>
+            Esta ação não poderá ser desfeita.
+          </p>
+          <button type="button" class="btn btn-primary" style="margin-right: 10px" (click)="rejeitarCliente()">
+            <i class="fa fa-save" aria-hidden="true"></i> Confirmar
+          </button>
+          <a class="btn btn-secondary" [routerLink]="['/gerente']">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+          </a>
         </div>
+      </div>
 
-        <!-- ============================================================== -->
-        <!-- End Container fluid  -->
-        <!-- ============================================================== -->
-      </div>
       <!-- ============================================================== -->
-      <!-- footer -->
-      <!-- ============================================================== -->
-      <footer class="footer text-center">
-        2021 © Ample Admin brought to you by
-        <a href="https://www.wrappixel.com/">wrappixel.com</a>
-      </footer>
-      <!-- ============================================================== -->
-      <!-- End footer -->
+      <!-- End Container fluid  -->
       <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
-    <!-- End Page wrapper  -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+      2022 © Bantads UFPR
+      
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
     <!-- ============================================================== -->
   </div>
+  <!-- ============================================================== -->
+  <!-- End Page wrapper  -->
+  <!-- ============================================================== -->
 </body>
 
 </html>

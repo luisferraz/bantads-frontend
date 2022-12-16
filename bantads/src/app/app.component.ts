@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from './auth/services/login.service';
+import { Usuario } from './shared';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'bantads';
+
+  constructor(
+    private router: Router,
+    private loginService: LoginService
+  ) { }
+
+  get usuarioLogado(): Usuario | null {
+    return this.loginService.usuarioLogado;
+  }
+
+  logout(): void {
+    this.loginService.logout();
+    this.router.navigate(['/login']);
+  }
 }
