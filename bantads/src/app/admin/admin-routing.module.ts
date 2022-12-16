@@ -5,32 +5,42 @@ import { InserirGerenteComponent } from './inserir-gerente/inserir-gerente.compo
 import { ListarGerentesComponent } from './listar-gerentes/listar-gerentes.component';
 import { RelatorioClientesComponent } from './relatorio-clientes/relatorio-clientes.component';
 import { TelaInicialComponent } from './tela-inicial/tela-inicial.component';
+import { AuthGuard } from '../auth/auth.guard';
 
 
 export const AdminRoutes: Routes = [
-    {
-        path: 'admin',
-        redirectTo: 'admin/inicio'
+  {
+    path: 'admin',
+    canActivate: [AuthGuard],
+    data: {
+      role: 'ADMIN'
+    },
+    children: [
+      {
+        path: '',
+        redirectTo: 'inicio',
+        pathMatch: 'full',
       },
       {
-        path: 'admin/inicio',
+        path: 'inicio',
         component: TelaInicialComponent
       },
       {
-        path: 'admin/listar-gerente',
-        component : ListarGerentesComponent
+        path: 'listar-gerente',
+        component: ListarGerentesComponent
       },
       {
-        path: 'admin/editar-gerente/:id',
+        path: 'editar-gerente/:id',
         component: EditarGerenteComponent
       },
       {
-        path: 'admin/novo-gerente',
+        path: 'novo-gerente',
         component: InserirGerenteComponent
       },
       {
-        path:'admin/relatorio-clientes',
+        path: 'relatorio-clientes',
         component: RelatorioClientesComponent
       }
-
+    ],
+  }
 ];
