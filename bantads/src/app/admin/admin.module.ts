@@ -30,4 +30,5 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     NgxMaskModule.forRoot()
   ],
 })
+
 export class AdminModule { }

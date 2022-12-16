@@ -3,11 +3,11 @@ import { Cliente } from 'src/app/shared';
 import { GerenteService } from '../services';
 
 @Component({
-  selector: 'app-consultar-cinco-mlehore-clientess',
-  templateUrl: './consultar-cinco-mlehore-clientess.component.html',
-  styleUrls: ['./consultar-cinco-mlehore-clientess.component.css']
+  selector: 'app-consultar-cinco-melhores-clientes',
+  templateUrl: './consultar-cinco-melhores-clientes.component.html',
+  styleUrls: ['./consultar-cinco-melhores-clientes.component.css']
 })
-export class ConsultarCincoMlehoreClientessComponent implements OnInit {
+export class ConsultarCincoMelhoresClientesComponent implements OnInit {
 
   clientes: Cliente[] = [];
 

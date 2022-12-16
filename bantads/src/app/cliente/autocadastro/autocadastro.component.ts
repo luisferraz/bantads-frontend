@@ -1,10 +1,8 @@
-import { Component, OnInit, ViewChild, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cliente } from 'src/app/shared';
 import { ClienteService } from '../services';
 import { NgForm } from '@angular/forms';
-import { Cliente } from 'src/app/shared';
 import { Endereco } from 'src/app/shared/models/endereco.model';
 
 @Component({
