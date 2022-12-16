@@ -20,14 +20,25 @@ export class ListarGerentesComponent implements OnInit {
   }
 
   listarTodos(): Gerente[] {
-    return this.adminService.listarTodos();
+    this.adminService.listarTodosGerentes().subscribe(
+      (data: Gerente[]) => {
+        if (data == null) {
+          this.gerentes = []
+        } else {
+          this.gerentes = data;
+        }
+      });
+    return this.gerentes;
   }
 
-  remover($event: any, gerente: Gerente) : void {
+  remover($event: any, gerente: Gerente): void {
     $event.preventDefault();
-    if(confirm(`Deseja realmente remover ${gerente.nome} ?`)) {
-      this.adminService.remover(gerente.id!);
-      this.gerentes = this.listarTodos();
+    if (confirm(`Deseja realmente remover ${gerente.nome} ?`)) {
+      this.adminService.removerGerente(gerente.id!).subscribe({
+        next: (data: any) => {
+          this.gerentes = this.listarTodos();
+        }
+      });
     }
   }
 
