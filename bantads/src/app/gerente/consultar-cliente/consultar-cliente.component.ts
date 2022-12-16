@@ -12,4 +12,8 @@ export class ConsultarClienteComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  buscarPorCPF() {
+    
+  }
+
 }

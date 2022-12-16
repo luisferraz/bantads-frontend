@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Cliente } from 'src/app/shared';
+import { GerenteService } from '../services';
 
 @Component({
   selector: 'app-tela-inicial',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TelaInicialComponent implements OnInit {
 
-  constructor() { }
+  clientes: Cliente[] = [];
+
+  constructor(private gerenteService: GerenteService) { }
 
   ngOnInit(): void {
+  }
+
+  listarTodos(): Cliente[] {
+    return this.gerenteService.listarTodos();
   }
 
 }

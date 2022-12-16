@@ -1,4 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Cliente } from 'src/app/shared';
+import { ClienteService } from '../services';
 import { NgForm } from '@angular/forms';
 import { Cliente } from 'src/app/shared';
 import { Endereco } from 'src/app/shared/models/endereco.model';
@@ -9,19 +13,21 @@ import { Endereco } from 'src/app/shared/models/endereco.model';
   styleUrls: ['./autocadastro.component.css']
 })
 export class AutocadastroComponent implements OnInit {
+  @ViewChild('formCliente') formCliente!: NgForm;
+  cliente!: Cliente;
 
-  @ViewChild('formRegistro') formRegistro!: NgForm;
-
-  cliente: Cliente = new Cliente;
-  endereco: Endereco = new Endereco;
-
-  constructor() { }
+  constructor(private clienteService: ClienteService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.cliente = new Cliente();
   }
 
-  registrar(): void{
-
+  inserir(): void {
+    if (this.formCliente.form.valid) {
+      this.clienteService.inserir(this.cliente);
+      this.router.navigate(['/cliente']);
+    }
   }
-  
+
 }

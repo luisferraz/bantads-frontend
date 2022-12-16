@@ -1,183 +1,224 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="keywords"
+      content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template"
+    />
+    <meta
+      name="description"
+      content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework"
+    />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Bantads</title>
+  </head>
 
-    <head>
-        <meta charset="utf-8" />
-        <title>Register</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-
-    <body class="authentication-bg" style="background-color: rgb(213, 230, 224);">
-
-        <div class="home-btn d-none d-sm-block">
-            <a href="#" class="text-dark"><i class="mdi mdi-home-variant h2"></i></a>
-        </div>
-        <div class="account-pages my-5 pt-sm-5">
-            <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-md-8 col-lg-6 col-xl-5">
-                        <div class="card">
-                            <div class="card-body p-4"> 
-                                <div class="text-center mt-2">
-                                    <h5 class="text-primary">Registre uma conta</h5>
-                                    <p class="text-muted">Faça sua conta bantads agora.</p>
-                                </div>
-                                <div class="p-2 mt-4">
-                                    <form #formRegistro="ngForm">
-
-                                        <div class="mt-4 text-center">
-                                            <p class="text-muted mb-0">Preencha com seus dados pessoais.</p>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="nome">Nome</label>
-                                                <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="cliente.nome" #nome="ngModel"  placeholder="Entre com o nome" required>        
-                                            </div>
-                                            <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="alert alert-danger"> 
-                                                <div [hidden]="!nome.errors?.['required']">Digite o seu nome.</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="email">E-mail</label>
-                                                <input type="email" class="form-control" id="email" name="email" [(ngModel)]="cliente.email" #email="ngModel" placeholder="Entre com o email" required>        
-                                            </div>
-                                            <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger"> 
-                                                <div [hidden]="!email.errors?.['required']">Digite o seu e-mail.</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="cpf">CPF</label>
-                                                <input type="text" class="form-control" id="cpf" name="cpf" [(ngModel)]="cliente.cpf" #cpf="ngModel"  placeholder="Entre com o CPF" required>        
-                                            </div>
-                                            <div *ngIf="cpf.errors && (cpf.dirty || cpf.touched)" class="alert alert-danger"> 
-                                                <div [hidden]="!cpf.errors?.['required']">Digite o seu CPF.</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="telefone">Telefone</label>
-                                                <input type="text" class="form-control" id="telefone" name="telefone" [(ngModel)]="cliente.telefone" #telefone="ngModel"  placeholder="Entre com o telefone" required>        
-                                            </div>
-                                            <div *ngIf="telefone.errors && (telefone.dirty || telefone.touched)" class="alert alert-danger"> 
-                                                <div [hidden]="!telefone.errors?.['required']">Digite o seu telefone.</div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="salario">Salário</label>
-                                                <input type="text" class="form-control" id="salario" name="salario" [(ngModel)]="cliente.salario" #salario="ngModel"  placeholder="Entre com o salário" required>        
-                                            </div>
-                                            <div *ngIf="salario.errors && (salario.dirty || salario.touched)" class="alert alert-danger"> 
-                                                <div [hidden]="!salario.errors?.['required']">Digite o seu salário.</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="mt-4 text-center">
-                                            <p class="text-muted mb-0">Preencha com dados do seu endereço.</p>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="tipo">Tipo</label>
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="m-1">
-                                                                <input type="radio" class="form-check-input" id="tipo1" name="tipo" [(ngModel)]="endereco.tipo" #tipo1="ngModel" value="Avenida"> Avenida
-                                                            </div>
-                                                            <div class="m-1">
-                                                                <input type="radio" class="form-check-input" id="tipo2" name="tipo" [(ngModel)]="endereco.tipo" #tipo2="ngModel" value="Rua"> Rua
-                                                            </div>
-                                                            <div class="m-1">
-                                                                <input type="radio" class="form-check-input" id="tipo3" name="tipo" [(ngModel)]="endereco.tipo" #tipo3="ngModel" value="Travessa"> Travessa
-                                                            </div>
-                                                    </div>     
-                                                    </div>
-                                                </div>   
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="logradouro">Logradouro</label>
-                                                <input type="text" class="form-control" id="logradouro" name="logradouro" [(ngModel)]="endereco.logradouro" #logradouro="ngModel"  placeholder="Entre com o logradouro" required>        
-                                            </div>
-                                            <div *ngIf="logradouro.errors && (logradouro.dirty || logradouro.touched)" class="alert alert-danger"> 
-                                                <div [hidden]="!logradouro.errors?.['required']">Digite o seu logradouro.</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="numero">Número</label>
-                                                <input type="text" class="form-control" id="numero" name="numero" [(ngModel)]="endereco.numero" #numero="ngModel"  placeholder="Entre com o número" required>        
-                                            </div>
-                                            <div *ngIf="numero.errors && (numero.dirty || numero.touched)" class="alert alert-danger"> 
-                                                <div [hidden]="!numero.errors?.['required']">Digite o número da residência.</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="complemento">Complemento</label>
-                                                <input type="text" class="form-control" id="complemento" name="complemento" [(ngModel)]="endereco.complemento" #complemento="ngModel"  placeholder="Entre com o complemento">        
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="cep">CEP</label>
-                                                <input type="text" class="form-control" id="cep" name="cep" [(ngModel)]="endereco.cep" #cep="ngModel"  placeholder="Entre com o CEP" required>        
-                                            </div>
-                                            <div *ngIf="cep.errors && (cep.dirty || cep.touched)" class="alert alert-danger"> 
-                                                <div [hidden]="!cep.errors?.['required']">Digite o CEP da residência.</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="cidade">Cidade</label>
-                                                <input type="text" class="form-control" id="cidade" name="cidade" [(ngModel)]="endereco.cidade" #cidade="ngModel"  placeholder="Entre com a cidade" required>        
-                                            </div>
-                                            <div *ngIf="cidade.errors && (cidade.dirty || cidade.touched)" class="alert alert-danger"> 
-                                                <div [hidden]="!cidade.errors?.['required']">Digite a Cidade da residência.</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="estado">Estado</label>
-                                                <input type="text" class="form-control" id="estado" name="estado" [(ngModel)]="endereco.estado" #estado="ngModel"  placeholder="Entre com o estado" required>        
-                                            </div>
-                                            <div *ngIf="estado.errors && (estado.dirty || estado.touched)" class="alert alert-danger"> 
-                                                <div [hidden]="!estado.errors?.['required']">Digite o Estado da residência.</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="mt-3 text-end">
-                                            <button class="btn btn-primary w-sm waves-effect waves-light" type="button" (click)="registrar()" [disabled]="!formRegistro.form.valid" [routerLink]="['/logar']">Registrar</button>
-                                        </div>
-                                        <div class="mt-4 text-center">
-                                            <p class="text-muted mb-0">Já tem uma conta ? <a href="#" class="fw-medium text-primary"> Login</a></p>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-5 text-center">
-                            <p>© Bantads. Criado pela equipe do Bantads</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- end row -->
+  <body>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div
+      id="main-wrapper"
+      data-layout="vertical"
+      data-navbarbg="skin5"
+      data-sidebartype="full"
+      data-sidebar-position="absolute"
+      data-header-position="absolute"
+      data-boxed-layout="full"
+    >
+      <!-- ============================================================== -->
+      <!-- Page wrapper  -->
+      <!-- ============================================================== -->
+      <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb bg-white">
+          <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+              <h4 class="page-title">Auto Cadastro</h4>
             </div>
-            <!-- end container -->
+          </div>
+          <!-- /.col-lg-12 -->
         </div>
-    </body>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+          <!-- ============================================================== -->
+          <!-- RECENT SALES -->
+          <!-- ============================================================== -->
+          <div class="well">
+            <form #formCliente="ngForm">
+              <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nome"
+                  name="nome"
+                  minlength="2"
+                  [(ngModel)]="cliente.nome"
+                  #nome="ngModel"
+                  minlength="2"
+                  required
+                />
+                <div
+                  *ngIf="nome.errors && (nome.dirty || nome.touched)"
+                  class="alert alert-danger"
+                >
+                  <div [hidden]="!nome.errors?.['required']">
+                    Digite o nome do cliente.
+                  </div>
+                  <div [hidden]="!nome.errors?.['minlenght']">
+                    O nome deve conter ao menos 2 caracteres.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  minlength="2"
+                  [(ngModel)]="cliente.email"
+                  #email="ngModel"
+                  minlength="2"
+                  required
+                />
+                <div
+                  *ngIf="email.errors && (email.dirty || email.touched)"
+                  class="alert alert-danger"
+                >
+                  <div [hidden]="!email.errors?.['required']">
+                    Digite o email do cliente.
+                  </div>
+                  <div [hidden]="!email.errors?.['minlenght']">
+                    O email deve conter ao menos 2 caracteres.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cpf"
+                  name="cpf"
+                  [(ngModel)]="cliente.cpf"
+                  #cpf="ngModel"
+                  maxlength="14"
+                  minlength="11"
+                  mask="CPF_CNPJ"
+                  required
+                />
+                <div
+                  *ngIf="cpf.errors && (cpf.dirty || cpf.touched)"
+                  class="alert alert-danger"
+                >
+                  <div [hidden]="!cpf.errors?.['required']">
+                    Digite o cpf do cliente.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="telefone"
+                  name="telefone"
+                  minlength="2"
+                  [(ngModel)]="cliente.telefone"
+                  #telefone="ngModel"
+                  maxlength="14"
+                  minlength="11"
+                  mask="(d0)00000-0000"
+                  required
+                />
+                <div
+                  *ngIf="
+                    telefone.errors && (telefone.dirty || telefone.touched)
+                  "
+                  class="alert alert-danger"
+                >
+                  <div [hidden]="!telefone.errors?.['required']">
+                    Digite o telefone do cliente.
+                  </div>
+                  <div [hidden]="!telefone.errors?.['minlength']">
+                    O telefone deve conter 11 caracteres.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="salario">Salario:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="salario"
+                  name="salario"
+                  minlength="2"
+                  [(ngModel)]="cliente.salario"
+                  #salario="ngModel"
+                  required
+                />
+                <div
+                  *ngIf="
+                    salario.errors && (salario.dirty || salario.touched)
+                  "
+                  class="alert alert-danger"
+                >
+                  <div [hidden]="!salario.errors?.['required']">
+                    Digite seu salário.
+                  </div>
+                  <div [hidden]="!salario.errors?.['minlength']">
+                    O salário deve ter pelo menos 2 caracteres.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  style="margin-right: 10px"
+                  (click)="inserir()"
+                  [disabled]="!formCliente.form.valid"
+                >
+                  <i class="fa fa-save" aria-hidden="true"></i> Salvar
+                </button>
+                <a class="btn btn-secondary" [routerLink]="['/admin']">
+                  <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer text-center">
+          2021 © Ample Admin brought to you by
+          <a href="https://www.wrappixel.com/">wrappixel.com</a>
+        </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+      </div>
+      <!-- ============================================================== -->
+      <!-- End Page wrapper  -->
+      <!-- ============================================================== -->
+    </div>
+  </body>
 </html>

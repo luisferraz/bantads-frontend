@@ -39,6 +39,10 @@ export class ClienteService {
     localStorage[LS_CHAVE] = JSON.stringify(clientes);
     
   }
+  
+  sacar(valor: number) {
+    throw new Error('Method not implemented.');
+  }
 }
 
 
