@@ -31,40 +31,39 @@
           <ul id="sidebarnav">
             <!-- User Profile-->
             <li class="sidebar-item pt-2">
-              <a [routerLink]="['/admin']" class="sidebar-link waves-effect waves-dark sidebar-link" href="#"
+              <a [routerLink]="['/gerente']" class="sidebar-link waves-effect waves-dark sidebar-link" href="#"
                 aria-expanded="false">
                 <i class="far fa-user" aria-hidden="true"></i>
-                <span class="hide-menu">ADMIN</span>
+                <span class="hide-menu">GERENTE</span>
               </a>
             </li>
             <li class="sidebar-item pt-2">
-              <a [routerLink]="['/admin']" class="sidebar-link waves-effect waves-dark sidebar-link" href="#"
+              <a [routerLink]="['/gerente']" class="sidebar-link waves-effect waves-dark sidebar-link" href="#"
                 aria-expanded="false">
                 <i class="far fa-clock" aria-hidden="true"></i>
                 <span class="hide-menu">Dashboard</span>
               </a>
             </li>
             <li class="sidebar-item">
-              <a [routerLink]="['/admin/novo-gerente']" href="#"
-                class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false">
-                <i class="fa fa-users" aria-hidden="true"></i>
-                <span class="hide-menu">Cadastrar Gerente</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a [routerLink]="['/admin/relatorio-clientes']" class="sidebar-link waves-effect waves-dark sidebar-link"
+              <a [routerLink]="['/gerente/listar-clientes']" class="sidebar-link waves-effect waves-dark sidebar-link"
                 href="#" aria-expanded="false">
                 <i class="fa fa-table" aria-hidden="true"></i>
-                <span class="hide-menu">Relatório de Clientes</span>
+                <span class="hide-menu">Listar todos os Clientes</span>
               </a>
             </li>
             <li class="sidebar-item">
-              <a [routerLink]="['/admin/listar-gerente']" class="sidebar-link waves-effect waves-dark sidebar-link"
-                href="#" aria-expanded="false">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
-                <span class="hide-menu">Editar Gerentes</span>
+              <a [routerLink]="['/gerente/listar-5-melhores-clientes']"
+                class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <span class="hide-menu">Listar 5 melhores Clientes</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a [routerLink]="['/gerente/consultar-cliente']" class="sidebar-link waves-effect waves-dark sidebar-link"
+                href="#" aria-expanded="false">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <span class="hide-menu">Buscar Cliente</span>
+              </a>
             <li class="sidebar-item">
               <a [routerLink]="['/login']" class="sidebar-link waves-effect waves-dark sidebar-link" href="#"
                 aria-expanded="false">
@@ -91,7 +90,7 @@
       <div class="page-breadcrumb bg-white">
         <div class="row align-items-center">
           <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Cadastrar Novo Gerente</h4>
+            <h4 class="page-title">Top 5 do Bandtads</h4>
           </div>
         </div>
         <!-- /.col-lg-12 -->
@@ -104,77 +103,28 @@
       <!-- ============================================================== -->
       <div class="container-fluid">
         <!-- ============================================================== -->
-        <!-- RECENT SALES -->
+        <!-- Listar clientes -->
         <!-- ============================================================== -->
-        <div class="well">
-          <form #formGerente="ngForm">
-            <div class="form-group">
-              <label for="nome">Nome:</label>
-              <input type="text" class="form-control" id="nome" name="nome" minlength="2" [(ngModel)]="gerente.nome"
-                #nome="ngModel" minlength="2" required />
-              <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="alert alert-danger">
-                <div [hidden]="!nome?.errors?.['required']">
-                  Digite o nome do gerente.
-                </div>
-                <div [hidden]="!nome?.errors?.['minlenght']">
-                  O nome deve conter ao menos 2 caracteres.
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="email">E-mail:</label>
-              <input type="text" class="form-control" id="email" name="email" minlength="2" [(ngModel)]="gerente.email"
-                #email="ngModel" minlength="2" required />
-              <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
-                <div [hidden]="!email?.errors?.['required']">
-                  Digite o email do gerente.
-                </div>
-                <div [hidden]="!email?.errors?.['minlenght']">
-                  O email deve conter ao menos 2 caracteres.
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="cpf">CPF:</label>
-              <input type="text" class="form-control" id="cpf" name="cpf" [(ngModel)]="gerente.cpf" #cpf="ngModel"
-                maxlength="14" minlength="11" mask="CPF_CNPJ" required />
-              <div *ngIf="cpf.errors && (cpf.dirty || cpf.touched)" class="alert alert-danger">
-                <div [hidden]="!cpf?.errors?.['required']">
-                  Digite o cpf do gerente.
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="telefone">Telefone:</label>
-              <input type="text" class="form-control" id="telefone" name="telefone" minlength="2"
-                [(ngModel)]="gerente.telefone" #telefone="ngModel" maxlength="14" minlength="11" mask="(d0)00000-0000"
-                required />
-              <div *ngIf="
-                    telefone.errors && (telefone.dirty || telefone.touched)
-                  " class="alert alert-danger">
-                <div [hidden]="!telefone?.errors?.['required']">
-                  Digite o telefone do gerente.
-                </div>
-                <div [hidden]="!telefone?.errors?.['minlength']">
-                  O telefone deve conter 11 caracteres.
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <button type="button" class="btn btn-primary" style="margin-right: 10px" (click)="inserir()"
-                [disabled]="!formGerente.form.valid">
-                <i class="fa fa-save" aria-hidden="true"></i> Salvar
-              </button>
-              <a class="btn btn-secondary" [routerLink]="['/admin']">
-                <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
-              </a>
-            </div>
-          </form>
-        </div>
+        <table class="table table-striped table-bordered table-hover">
+          <tbody>
+            <tr>
+              <th>Nome</th>
+              <th>CPF</th>
+              <th>Cidade/UF</th>
+              <th>Saldo</th>
+            </tr>
+            <tr *ngFor="let cliente of clientes">
+              <td>{{ cliente.nome }}</td>
+              <td>{{ cliente.cpf! | mask : "CPF_CNPJ" }}</td>
+              <td>{{ cliente.endereco! }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p *ngIf="clientes.length == 0">Nenhum cliente cadastrado.</p>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
       </div>
-      <!-- ============================================================== -->
-      <!-- End Container fluid  -->
-      <!-- ============================================================== -->
       <!-- ============================================================== -->
       <!-- footer -->
       <!-- ============================================================== -->
