@@ -12,8 +12,8 @@ import { AdminService } from '../services';
 })
 export class InserirGerenteComponent implements OnInit {
 
-  @ViewChild('formGerente') formGerente! : NgForm;
-  gerente! : Gerente;
+  @ViewChild('formGerente') formGerente!: NgForm;
+  gerente!: Gerente;
 
   constructor(
     private adminService: AdminService,
@@ -24,10 +24,13 @@ export class InserirGerenteComponent implements OnInit {
     this.gerente = new Gerente();
   }
 
-  inserir() : void{
-    if(this.formGerente.form.valid){
-      this.adminService.inserir(this.gerente);
-      this.router.navigate(['/admin/listar-gerente']);
+  inserir(): void {
+    if (this.formGerente.form.valid) {
+      this.adminService.inserirGerente(this.gerente).subscribe(
+        (gerente: Gerente) => {
+          this.router.navigate(['/admin/listar-gerente']);
+        }
+      );
     }
   }
 

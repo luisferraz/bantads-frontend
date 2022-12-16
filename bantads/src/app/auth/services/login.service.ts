@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, map, of, take } from 'rxjs';
 import { Usuario, Login } from 'src/app/shared';
 
 const LS_CHAVE: string = 'usuarioLogado';
@@ -28,33 +28,29 @@ export class LoginService {
   }
 
   login(login: Login): Observable<Usuario | null> {
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'application/json'
-    //   }),
-    //   params: new HttpParams().append("login", login.login!),
-    //   reponseType: "json"
-    // };
+    var userId;
+    switch (login.login) {
+      case 'admin':
+        userId = 1;
+        break;
 
-    // return this.httpClient.get<Usuario>(this.BASE_URL, httpOptions);
+      case 'gerente':
+        userId = 2;
+        break;
 
-    let usu = new Usuario(1, 'Cliente', login.login, login.senha, 'CLIENTE');
-    if (login.login == login.senha) {
-      if (login.login == 'admin') {
-        usu = new Usuario(1, 'Admin', login.login, login.senha, 'ADMIN');
-      } else if (login.login == 'gerente') {
-        usu = new Usuario(
-          1,
-          'Gerente',
-          login.login,
-          login.senha,
-          'GERENTE'
-        );
-      }
-      return of(usu);
-    } else {
-      return of(null);
+      default:
+        userId = 3;
+        break;
     }
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      reponseType: "json"
+    };
+
+    return this.httpClient.get<Usuario>(this.BASE_URL + userId, httpOptions);
 
   }
 }

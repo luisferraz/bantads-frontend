@@ -18,7 +18,19 @@ export class RelatorioClientesComponent implements OnInit {
   }
 
   relatorioClientes(): Conta[] {
-    return this.adminService.relatorioClientes();
+    this.adminService.listarTodasContas().subscribe(
+      ((data: Conta[]) => {
+        if (data != null) {
+          //Ordena as contas pelo nome do Cliente
+          this.contas = data.sort((a, b) => a.cliente!.nome!.localeCompare(b.cliente!.nome!));
+        }
+        else {
+          this.contas = []
+        }
+      })
+    );
+    return this.contas;
   }
+
 
 }

@@ -23,15 +23,24 @@ export class EditarGerenteComponent implements OnInit {
 
   ngOnInit(): void {
     let id = +this.route.snapshot.params['id'];
-    const res = this.adminService.buscarPorId(id);
-    if(res !== undefined) this.gerente = res;
-    else throw new Error('Gerente não encontrado: id = ' + id);
+    const res = this.adminService.buscarGerentePorId(id).subscribe(
+      (ger: Gerente) => {
+        if (ger != null) {
+          this.gerente = ger;
+        } else {
+          throw new Error('Gerente não encontrado: id = ' + id);
+        }
+      }
+    );
   }
 
-  atualizar() : void{
-    if(this.formGerente.form.valid){
-      this.adminService.atualizar(this.gerente);
-      this.router.navigate(['/admin/listar-gerente']);
+  atualizar(): void {
+    if (this.formGerente.form.valid) {
+      this.adminService.alterarGerente(this.gerente).subscribe(
+        (gerente: Gerente) => {
+          this.router.navigate(['/admin/listar-gerente']);
+        }
+      );
     }
   }
 
