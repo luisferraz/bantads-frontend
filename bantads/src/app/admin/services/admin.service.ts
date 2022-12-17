@@ -36,7 +36,7 @@ export class AdminService {
   }
 
   alterarGerente(ger: Gerente): Observable<Gerente> {
-    return this.httpClient.put<Gerente>(this.BASE_URL + 'gerentes', JSON.stringify(ger), this.httpOptions);
+    return this.httpClient.put<Gerente>(this.BASE_URL + `gerentes/${ger.id}`, JSON.stringify(ger), this.httpOptions);
   }
 
   removerGerente(idGerente: number): Observable<any> {

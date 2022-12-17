@@ -23,8 +23,11 @@ export class AutocadastroComponent implements OnInit {
 
   inserir(): void {
     if (this.formCliente.form.valid) {
-      this.clienteService.inserir(this.cliente);
-      this.router.navigate(['/cliente']);
+      this.clienteService.inserir(this.cliente).subscribe(
+        (cliente: Cliente) => {
+          this.router.navigate(['/login']);
+        }
+      );
     }
   }
 

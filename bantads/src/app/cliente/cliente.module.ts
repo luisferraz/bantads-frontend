@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { NgxMaskModule } from 'ngx-mask';
+import { SharedModule } from '../shared';
 
 import { AutocadastroComponent } from './autocadastro/autocadastro.component';
 import { ConsultarExtratoComponent } from './consultar-extrato/consultar-extrato.component';
@@ -27,7 +30,10 @@ import { TransferirComponent } from './transferir/transferir.component';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    SharedModule,
+    FormsModule,
+    NgxMaskModule.forRoot(),
+    CurrencyMaskModule
   ]
 })
 export class ClienteModule { }
