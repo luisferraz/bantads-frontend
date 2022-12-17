@@ -22,10 +22,6 @@ export const ClienteRoutes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'autocadastro',
-        component: AutocadastroComponent
-      },
-      {
         path: 'consultar-extrato',
         component: ConsultarExtratoComponent
       },
@@ -49,7 +45,6 @@ export const ClienteRoutes: Routes = [
         path: 'inicial',
         component: TelaInicialClienteComponent
       }
-    ]
+    ],
   }
-
 ];
