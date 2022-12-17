@@ -11,16 +11,16 @@ import { AuthGuard } from "../auth/auth.guard";
 export const GerenteRoutes: Routes = [
   {
     path: 'gerente',
+    redirectTo: 'gerente/inicio',
+    pathMatch: 'full'
+  },
+  {
+    path: 'gerente',
     canActivate: [AuthGuard],
     data: {
       role: 'GERENTE'
     },
     children: [
-      {
-        path: 'gerente',
-        redirectTo: 'inicio',
-        pathMatch: 'full'
-      },
       {
         path: 'inicio',
         component: TelaInicialComponent
@@ -34,11 +34,11 @@ export const GerenteRoutes: Routes = [
         component: ConsultarCincoMelhoresClientesComponent
       },
       {
-        path: 'aceitar-cliente',
+        path: 'aceitar-cliente/:id',
         component: AprovarClienteComponent
       },
       {
-        path: 'recusar-cliente',
+        path: 'recusar-cliente/:id',
         component: RejeitarClienteComponent
       },
       {

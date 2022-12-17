@@ -43,6 +43,17 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">
+            Informações do cliente:
+          </h5>
+          <p class="card-text">Nome: {{cliente.nome}}</p>
+          <p class="card-text">CPF: {{cliente.cpf! | mask: "CPF_CNPJ"}}</p>
+          <p class="card-text">E-mail: {{cliente.email}}</p>
+          <p class="card-text">Salário: {{cliente.salario | currency:'BRL'}}</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">
             Deseja recusar a solicitação de criação de conta deste cliente?
           </h5>
           <div class="form-group">

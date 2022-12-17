@@ -9,9 +9,10 @@ import { ConsultarCincoMelhoresClientesComponent } from './consultar-cinco-melho
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared';
-import { NgxMaskModule } from 'ngx-mask';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
-
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { NgxMaskModule } from 'ngx-mask';
     RouterModule,
     FormsModule,
     SharedModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
   ]
 })
 export class GerenteModule { }
