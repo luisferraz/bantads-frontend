@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Cliente, Conta } from 'src/app/shared';
+import { GerenteService } from '../services';
 
 @Component({
   selector: 'app-aprovar-cliente',
@@ -7,11 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AprovarClienteComponent implements OnInit {
 
-  constructor() { }
+  cliente!: Cliente;
+
+  constructor(
+    private gerenteService: GerenteService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    let id = +this.route.snapshot.params['id'];
+    const res = this.gerenteService.buscarClientePorId(id).subscribe(
+      (cl: Cliente) => {
+        if (cl != null) {
+          this.cliente = cl;
+        } else {
+          throw new Error('Cliente não encontrado: id = ' + id);
+        }
+      }
+    );
   }
 
-  enviarSenha(){}
+  aceitarCliente(){
+  }
 
 }

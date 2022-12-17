@@ -14,10 +14,19 @@ export class TelaInicialComponent implements OnInit {
   constructor(private gerenteService: GerenteService) { }
 
   ngOnInit(): void {
+    this.clientes = this.listarClientesPendentes();
   }
 
-  listarTodos(): Cliente[] {
-    return this.gerenteService.listarTodos();
+  listarClientesPendentes(): Cliente[] {
+    this.gerenteService.listarClientesPendentes().subscribe(
+      (data: Cliente[]) => {
+        if(data == null) {
+          this.clientes = []
+        } else {
+          this.clientes = data;
+        }
+      });
+      return this.clientes
   }
 
 }
