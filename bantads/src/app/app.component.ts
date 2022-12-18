@@ -20,7 +20,8 @@ export class AppComponent {
     return this.loginService.usuarioLogado;
   }
 
-  logout(): void {
+  logout($event: any): void {
+    $event.preventDefault();
     this.loginService.logout();
     this.router.navigate(['/login']);
   }

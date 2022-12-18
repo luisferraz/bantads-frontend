@@ -11,16 +11,16 @@ import { AuthGuard } from "../auth/auth.guard";
 export const GerenteRoutes: Routes = [
   {
     path: 'gerente',
-    redirectTo: 'gerente/inicio',
-    pathMatch: 'full'
-  },
-  {
-    path: 'gerente',
     canActivate: [AuthGuard],
     data: {
       role: 'GERENTE'
     },
     children: [
+      {
+        path: '',
+        redirectTo: 'inicio',
+        pathMatch: "full"
+      },
       {
         path: 'inicio',
         component: TelaInicialComponent
