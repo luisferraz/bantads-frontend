@@ -48,15 +48,15 @@
               <li>
                 <div id="sparklinedash">
                   <canvas width="67" height="30" style="
-                          display: inline-block;
-                          width: 67px;
-                          height: 30px;
-                          vertical-align: top;
-                        "></canvas>
+                        display: inline-block;
+                        width: 67px;
+                        height: 30px;
+                        vertical-align: top;
+                      "></canvas>
                 </div>
               </li>
               <li class="ms-auto">
-                <span class="counter text-success">10</span>
+                <span class="counter text-success">{{totalGerentes}}</span>
               </li>
             </ul>
           </div>
@@ -68,15 +68,15 @@
               <li>
                 <div id="sparklinedash2">
                   <canvas width="67" height="30" style="
-                          display: inline-block;
-                          width: 67px;
-                          height: 30px;
-                          vertical-align: top;
-                        "></canvas>
+                        display: inline-block;
+                        width: 67px;
+                        height: 30px;
+                        vertical-align: top;
+                      "></canvas>
                 </div>
               </li>
               <li class="ms-auto">
-                <span class="counter text-purple">100</span>
+                <span class="counter text-purple">{{totalClientes}}</span>
               </li>
             </ul>
           </div>
@@ -88,15 +88,15 @@
               <li>
                 <div id="sparklinedash3">
                   <canvas width="67" height="30" style="
-                          display: inline-block;
-                          width: 67px;
-                          height: 30px;
-                          vertical-align: top;
-                        "></canvas>
+                        display: inline-block;
+                        width: 67px;
+                        height: 30px;
+                        vertical-align: top;
+                      "></canvas>
                 </div>
               </li>
               <li class="ms-auto">
-                <span class="counter text-info">9111019</span>
+                <span class="counter text-info">{{totalSaldo}}</span>
               </li>
             </ul>
           </div>
@@ -123,26 +123,20 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td class="txt-oflo">João</td>
-                    <td class="text-info">10</td>
-                    <td class="text-success">R$ 2000</td>
-                    <td><span class="text-danger">R$ 240</span></td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td class="txt-oflo">Janja</td>
-                    <td class="text-info">25</td>
-                    <td class="text-success">R$ 150000</td>
-                    <td><span class="text-danger">R$ 1000</span></td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td class="txt-oflo">Maria</td>
-                    <td class="text-info">20</td>
-                    <td class="text-success">R$ 200000</td>
-                    <td><span class="text-danger">R$ 24000</span></td>
+                  <tr *ngFor="let dadosGerente of gerentesComTotais">
+                    <td>{{ dadosGerente["id"] }}</td>
+                    <td class="txt-oflo">{{ dadosGerente["nome"] }}</td>
+                    <td class="text-info">
+                      {{ dadosGerente["totalClientes"] }}
+                    </td>
+                    <td class="text-success">
+                      {{ dadosGerente["totalSaldoPositivo"] }}
+                    </td>
+                    <td>
+                      <span class="text-danger">{{
+                        dadosGerente["totalSaldoNegativo"]
+                        }}</span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -152,15 +146,12 @@
       </div>
     </div>
     <!-- ============================================================== -->
-    <!-- End Container fluid  -->
+    <!-- End Container flu'id'  -->
     <!-- ============================================================== -->
     <!-- ============================================================== -->
     <!-- footer -->
     <!-- ============================================================== -->
-    <footer class="footer text-center">
-      2022 © Bantads UFPR
-      
-    </footer>
+    <footer class="footer text-center">2022 © Bantads UFPR</footer>
     <!-- ============================================================== -->
     <!-- End footer -->
     <!-- ============================================================== -->

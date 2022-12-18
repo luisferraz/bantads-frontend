@@ -3,23 +3,30 @@
     {
       "id": 1,
       "nome": "Admin",
-      "login": "admin",
+      "email": "admin@email.com",
       "senha": "senhaadmin",
       "perfil": "ADMIN"
     },
     {
       "id": 2,
       "nome": "Gerente",
-      "login": "gerente",
+      "email": "gerente@email.com",
       "senha": "senhagerente",
       "perfil": "GERENTE"
     },
     {
       "id": 3,
       "nome": "Cliente",
-      "login": "cliente",
+      "email": "cliente@email.com",
       "senha": "senhacliente",
       "perfil": "CLIENTE"
+    },
+    {
+      "nome": "Luis Cliente Teste",
+      "email": "luis@email.com",
+      "senha": "wrc40r34",
+      "perfil": "CLIENTE",
+      "id": 4
     }
   ],
   "gerentes": [
@@ -36,17 +43,53 @@
       "cpf": "00000000000",
       "telefone": "41090909888",
       "id": 2
+    },
+    {
+      "nome": "Luis",
+      "email": "luisgerente@email.com",
+      "cpf": "11111111111",
+      "telefone": "41999999999",
+      "id": 3
     }
   ],
   "clientes": [
     {
-      "nome": "Cliente Teste",
-      "email": "cliente@teste.com",
-      "cpf": "00000000099",
-      "telefone": "41999999999",
-      "salario": 20000,
-      "id": 1
+      "nome": "Luis Cliente Teste",
+      "email": "luis@email.com",
+      "cpf": "11111111111",
+      "telefone": "11111111111",
+      "salario": 5000,
+      "id": 1,
+      "usuario": {
+        "nome": "Luis Cliente Teste",
+        "email": "luis@email.com",
+        "senha": "wrc40r34",
+        "perfil": "CLIENTE",
+        "id": 4
+      }
     }
   ],
-  "contas": []
+  "contas": [
+    {
+      "numero": 254,
+      "cliente": {
+        "nome": "Luis Cliente Teste",
+        "email": "luis@email.com",
+        "cpf": "11111111111",
+        "telefone": "11111111111",
+        "salario": 5000,
+        "id": 1
+      },
+      "limite": 2500,
+      "saldo": 0,
+      "gerente": {
+        "nome": "gerente teste",
+        "email": "gerente@gerente.com.br",
+        "cpf": "11111111111",
+        "telefone": "11999999999",
+        "id": 1
+      },
+      "id": 1
+    }
+  ]
 }

@@ -4,8 +4,8 @@ import { Gerente } from "./gerente.model";
 export class Conta {
 
   constructor(
-    public cliente?: Cliente,
     public numero?: number,
+    public cliente?: Cliente,
     public limite?: number,
     public saldo?: number,
     public gerente?: Gerente,

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Gerente } from 'src/app/shared';
+import { Conta, Gerente } from 'src/app/shared';
 import { AdminService } from '../services';
 import { ClienteService } from 'src/app/cliente/services';
+import { GerenteService } from 'src/app/gerente/services';
 
 @Component({
   selector: 'app-tela-inicial',
@@ -9,38 +10,53 @@ import { ClienteService } from 'src/app/cliente/services';
   styleUrls: ['./tela-inicial.component.css']
 })
 export class TelaInicialComponent implements OnInit {
-  gerentesComTotais: any[] = [];
+  gerentesComTotais: Record<string, any>[] = [];
+  totalClientes!: number;
+  totalSaldo!: number;
+  totalGerentes!: number;
 
   constructor(
     private adminService: AdminService,
-    private clienteService: ClienteService
+    private gerenteService: GerenteService
   ) { }
 
   ngOnInit(): void {
+    this.totalSaldo = 0;
+    this.totalGerentes = 0;
+    this.totalClientes = 0;
     //Lista os gerentes
-    var gerentes: Gerente[] = [];
     this.adminService.listarTodosGerentes().subscribe(
       (data: Gerente[]) => {
-        if (data == null) {
-          gerentes = []
-        } else {
-          gerentes = data;
+        if (data != null) {
+          data.forEach((gerente, idx, arr) => {
+            //Busca todas as contas do gerente
+            this.gerenteService.buscaContasPorGerente(gerente).subscribe(
+              (contas: Conta[]) => {
+                //Total de clientes = total de contas
+                let totalClientes: number = contas.length;
+                //Total saldo positivo
+                let totalSaldoPositivo: number = contas
+                  .reduce((acum, obj) => { return acum + (obj.saldo! > 0 ? obj.saldo! : 0) }, 0);
+                //Total saldo Negativo
+                let totalSaldoNegativo: number = contas
+                  .reduce((acum, obj) => { return acum + (obj.saldo! < 0 ? obj.saldo! : 0) }, 0);
+
+                var obj: Record<string, any> = {
+                  ...gerente,
+                  totalClientes: totalClientes,
+                  totalSaldoPositivo: totalSaldoPositivo,
+                  totalSaldoNegativo: totalSaldoNegativo
+                }
+                //insere o objeto no array utilizado no componente
+                this.gerentesComTotais.push(obj);
+                this.totalSaldo += totalSaldoPositivo + totalSaldoNegativo;
+                this.totalClientes += totalClientes;
+                this.totalGerentes++;
+              }
+            );
+          })
         }
       });
-
-      this.gerentesComTotais = gerentes.map((gerente, idx, arr) => {
-      //Adicionar aqui busca doas contas
-      // Totalizacao dos saldos
-      // Devolver array gerentes com a seguinte estrutura
-      // [
-      //  {
-      //   gerente: Gerente,
-      //   totalClientes: number,
-      //   totalSaldoPositivo: number,
-      //   totalSaldoNegativo: number
-      //  }
-      //]
-    });
 
   }
 

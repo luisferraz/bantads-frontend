@@ -7,5 +7,5 @@ export class Transacao {
         public idCliente: number,
         public valor: number,
         public idClienteDestino: number
-    ){}
+    ) { }
 }

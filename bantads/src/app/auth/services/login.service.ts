@@ -27,30 +27,15 @@ export class LoginService {
     delete localStorage[LS_CHAVE];
   }
 
-  login(login: Login): Observable<Usuario | null> {
-    var userId;
-    switch (login.login) {
-      case 'admin':
-        userId = 1;
-        break;
-
-      case 'gerente':
-        userId = 2;
-        break;
-
-      default:
-        userId = 3;
-        break;
-    }
-
+  login(login: Login): Observable<Usuario[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       }),
-      reponseType: "json"
+      params: new HttpParams().append('email', login.email!).append('senha', login.senha!)
     };
 
-    return this.httpClient.get<Usuario>(this.BASE_URL + userId, httpOptions);
+    return this.httpClient.get<Usuario[]>(this.BASE_URL, httpOptions);
 
   }
 }
