@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Conta } from 'src/app/shared';
 import { ClienteService } from '../services';
 
@@ -12,12 +12,13 @@ import { ClienteService } from '../services';
 export class SacarComponent implements OnInit {
 
   @ViewChild('formSacar') formSacar!: NgForm;
-  conta!: Conta;
-  public valorSaque!: number;
+  conta!: Conta = new Conta();
+  public valorSaque!: number = 0;
 
   constructor(
     private clienteService: ClienteService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {

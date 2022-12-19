@@ -16,7 +16,7 @@ export class ConsultarExtratoComponent implements OnInit {
 
   constructor(
     private clienteService: ClienteService
-  ) { 
+  ) {
     this.conta = new Conta();
   }
 
@@ -37,5 +37,6 @@ export class ConsultarExtratoComponent implements OnInit {
       }
     );
   }
-
 }
+
+

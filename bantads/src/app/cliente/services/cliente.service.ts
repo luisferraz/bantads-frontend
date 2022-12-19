@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { LoginService } from 'src/app/auth/services/login.service';
 import { Conta, Fluxo, TiposOperacao, Transacao, Usuario } from 'src/app/shared';
 import { Cliente } from 'src/app/shared/models/cliente.model';
+import { Transacao } from 'src/app/shared/models/transacao.model';
 
 const LS_CHAVE: string = "clientes";
 
@@ -130,6 +131,11 @@ export class ClienteService {
   buscarTransacoesPorConta(conta: Conta): Observable<Transacao[]> {
     return this.httpClient.get<Transacao[]>(this.BASE_URL + `transacoes?contaOrigem.id=${conta.id}`, this.httpOptions);
   }
+}
+
+export default interface SaldoResponse {
+  saldo: number;
+  limite: number;
 }
 
 
