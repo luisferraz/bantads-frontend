@@ -11,8 +11,9 @@ import { ClienteService } from '../services';
 })
 export class SacarComponent implements OnInit {
 
-  @ViewChild('formSacar') formSacar! : NgForm;
-  conta! : Conta; 
+  @ViewChild('formSacar') formSacar!: NgForm;
+  conta!: Conta;
+  public valorSaque!: number;
 
   constructor(
     private clienteService: ClienteService,
@@ -20,14 +21,25 @@ export class SacarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.conta = new Conta();
+    this.clienteService.buscarContaPorCliente(this.clienteService.clienteLogado).subscribe(
+      (contas: Conta[]) => {
+        if ((contas != null) && (contas.length > 0)) {
+          this.conta = contas[0];
+        }
+      }
+    );
   }
 
-  sacar() : void{
-    if(this.formSacar.form.valid){
-      this.clienteService.sacar(this.formSacar.form.value);
-      this.router.navigate(['/admin/listar-gerente']);
+  sacar(): void {
+    if (this.formSacar.form.valid) {
+      this.clienteService.sacar(this.valorSaque).subscribe(
+        (status: boolean) => {
+          // alert(status ? 'Saque realizado com sucesso.' : 'Erro ao realizar saque.');
+          alert('Saque realizado com sucesso.');
+          this.router.navigate(['/cliente']);
+        }
+      );
+
     }
   }
-
 }

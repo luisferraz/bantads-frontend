@@ -34,14 +34,14 @@ export class DepositarComponent implements OnInit {
 
   depositar(): void {
     if (this.formDepositar.form.valid) {
-      if (this.clienteService.depositar(this.valorDeposito)) {
-        alert('Depósito realizado com sucesso.');
-      }
-      else {
-        alert('Erro ao realizar depósito.')
-      }
-    };
-    this.router.navigate(['/cliente']);
-  }
+      this.clienteService.depositar(this.valorDeposito).subscribe(
+        (result: boolean) => {
+          alert('Depósito realizado com sucesso.');
+          // alert(result ? 'Depósito realizado com sucesso.' : 'Erro ao realizar depósito.');
+          this.router.navigate(['/cliente']);
+        }
+      );
+    }
+  };
 }
 

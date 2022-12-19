@@ -70,7 +70,7 @@ export class ClienteService {
     return this.httpClient.post<Cliente>(this.BASE_URL + 'clientes', JSON.stringify(cliente), this.httpOptions);
   }
 
-  depositar(valor: number): Observable<Boolean> {
+  depositar(valor: number): Observable<boolean> {
     var status = false;
     if (this.clienteLogado) {
       this.buscarContaPorCliente(this.clienteLogado).subscribe(
@@ -91,7 +91,7 @@ export class ClienteService {
     return of(status);
   }
 
-  sacar(valor: number): Observable<Boolean> {
+  sacar(valor: number): Observable<boolean> {
     var status = false;
     if (this.clienteLogado) {
       this.buscarContaPorCliente(this.clienteLogado).subscribe(
@@ -99,7 +99,7 @@ export class ClienteService {
           if ((contas != null) && (contas.length > 0)) {
             let conta = contas[0];
 
-            if ((conta.saldo! + conta.limite! - valor) > 0 ){
+            if ((conta.saldo! + conta.limite! - valor) > 0) {
               conta.saldo! -= valor;
 
               this.atualizarConta(conta).subscribe(

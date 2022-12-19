@@ -44,7 +44,8 @@
         <form #formSacar="ngForm">
           <div class="form-group">
             <label for="valor">Valor:</label>
-            <input type="text" class="form-control" id="valor" name="valor" numerico required />
+            <input type="text" class="form-control" id="valor" name="valor" currencyMask required 
+            [(ngModel)]="valorSaque"/>
           </div>
           <div class="form-group">
             <button type="button" class="btn btn-primary" style="margin-right: 10px" (click)="sacar()"
@@ -66,7 +67,7 @@
     <!-- ============================================================== -->
     <footer class="footer text-center">
       2022 © Bantads UFPR
-      
+
     </footer>
     <!-- ============================================================== -->
     <!-- End footer -->
