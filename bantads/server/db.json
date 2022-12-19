@@ -81,7 +81,7 @@
         "id": 1
       },
       "limite": 2500,
-      "saldo": 0,
+      "saldo": 3500,
       "gerente": {
         "nome": "gerente teste",
         "email": "gerente@gerente.com.br",

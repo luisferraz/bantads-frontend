@@ -28,7 +28,7 @@ export class AutocadastroComponent implements OnInit {
   autocadastrar(): void {
     if (this.formCliente.form.valid) {
       //Preenche os dados do cliente 
-      this.clienteService.inserir(this.cliente).subscribe(
+      this.clienteService.inserirCliente(this.cliente).subscribe(
         (cli: Cliente) => {
           let numero = Math.floor(Math.random() * 1000);
           let limite: number = cli.salario! / 2;
@@ -40,7 +40,7 @@ export class AutocadastroComponent implements OnInit {
               const novoUsuario: Usuario = new Usuario(cli.nome, cli.email, senha, 'CLIENTE');
               this.adminService.inserirUsuario(novoUsuario).subscribe((usu: Usuario) => {
                 cli.usuario = usu;
-                this.clienteService.atualizar(cli).subscribe();
+                this.clienteService.atualizarCliente(cli).subscribe();
               });
 
               //Eh pra ser o gerente com menos clientes, mas aqui vou associar qualquer um

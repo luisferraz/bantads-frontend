@@ -17,7 +17,7 @@ export const ClienteRoutes: Routes = [
     },
     children: [
       {
-        path: 'cliente',
+        path: '',
         redirectTo: 'inicial',
         pathMatch: 'full'
       },

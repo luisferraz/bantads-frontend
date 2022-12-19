@@ -31,7 +31,7 @@ export class EditarPerfilComponent implements OnInit {
 
   atualizar(): void{
     if(this.formCliente.form.valid){
-       this.ClienteService.atualizar(this.cliente);
+       this.ClienteService.atualizarCliente(this.cliente);
        this.router.navigate(['/cliente']);
     }
   }
