@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Transacao } from 'src/app/shared/models/transacao.model';
+import { Conta, Transacao, TiposOperacao, Fluxo } from 'src/app/shared';
 import { ClienteService } from '../services';
-import SaldoResponse from '../services/cliente.service';
 
 @Component({
   selector: 'app-consultar-extrato',
@@ -10,40 +8,35 @@ import SaldoResponse from '../services/cliente.service';
   styleUrls: ['./consultar-extrato.component.css']
 })
 export class ConsultarExtratoComponent implements OnInit {
+  conta!: Conta;
+  extrato: Transacao[] = [];
 
-  extrato?: Array<Transacao>;
-  saldo?: SaldoResponse;
+  public TiposOperacao = TiposOperacao;
+  public Fluxo = Fluxo;
 
-
-  constructor(private clienteService: ClienteService, private route: ActivatedRoute) { }
+  constructor(
+    private clienteService: ClienteService
+  ) {
+    this.conta = new Conta();
+  }
 
   ngOnInit(): void {
-  }
+    this.clienteService.buscarContaPorCliente(this.clienteService.clienteLogado).subscribe(
+      (contas: Conta[]) => {
+        if (contas != null) {
+          this.conta = contas[0];
 
-  getSaldo(): void {
-
-    let id = +this.route.snapshot.params['id'];
-    this.clienteService.getSaldo(id).subscribe((res) => {
-      if (res) {
-        console.log(res);
-        this.saldo = res;
+          this.clienteService.buscarTransacoesPorConta(this.conta).subscribe(
+            (transacoes: Transacao[]) => {
+              if (transacoes != null) {
+                this.extrato = transacoes;
+              }
+            }
+          )
+        }
       }
-      else {
-        throw new Error('Falha ao carregar o saldo do cliente = ' + id);
-      }
-    });
-  }
-
-  getExtrato(): void{
-    let id = +this.route.snapshot.params['id'];
-    this.clienteService.getExtrato(id).subscribe((res) => {
-      if (res) {
-        console.log(res);
-        this.extrato = res.reverse();      
-      }
-      else {
-        throw new Error('Falha ao carregar o extrato do cliente = ' + id);
-      }
-    });
+    );
   }
 }
+
+

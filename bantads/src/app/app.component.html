@@ -191,7 +191,7 @@
               </li>
             </div>
             <li class="sidebar-item">
-              <a (click)="logout()" class="sidebar-link waves-effect waves-dark sidebar-link" href="#"
+              <a (click)="logout($event)" class="sidebar-link waves-effect waves-dark sidebar-link" href="#"
                 aria-expanded="false">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                 <span class="hide-menu">LogOut</span>
@@ -206,7 +206,33 @@
     <router-outlet></router-outlet>
   </div>
   <ng-template #barlessDiv>
-    <router-outlet></router-outlet>
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+      <aside class="left-sidebar" data-sidebarbg="skin6">
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+          <!-- Sidebar navigation-->
+          <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+              <li class="sidebar-item pt-2">
+                <a [routerLink]="['/login']" class="sidebar-link waves-effect waves-dark sidebar-link" href="#"
+                  aria-expanded="false">
+                  <i class="fa fa-sign-in" aria-hidden="true"></i>
+                  <span class="hide-menu">Login</span>
+                </a>
+              <li class="sidebar-item pt-2">
+                <a [routerLink]="['/autocadastro']" class="sidebar-link waves-effect waves-dark sidebar-link" href="#"
+                  aria-expanded="false">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <span class="hide-menu">Autocadastro</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+      <router-outlet></router-outlet>
+    </div>
   </ng-template>
 
 </body>

@@ -1,8 +1,7 @@
 import { Routes } from "@angular/router";
-import { AutocadastroComponent } from "./autocadastro/autocadastro.component";
 import { ConsultarExtratoComponent } from "./consultar-extrato/consultar-extrato.component";
 import { ConsultarSaldoComponent } from "./consultar-saldo/consultar-saldo.component";
-import { DespositarComponent } from "./despositar/despositar.component";
+import { DepositarComponent } from "./depositar/depositar.component";
 import { EditarPerfilComponent } from "./editar-perfil/editar-perfil.component";
 import { SacarComponent } from "./sacar/sacar.component";
 import { TelaInicialClienteComponent } from "./tela-inicial-cliente/tela-inicial-cliente.component";
@@ -17,7 +16,7 @@ export const ClienteRoutes: Routes = [
     },
     children: [
       {
-        path: 'cliente',
+        path: '',
         redirectTo: 'inicial',
         pathMatch: 'full'
       },
@@ -31,7 +30,7 @@ export const ClienteRoutes: Routes = [
       },
       {
         path: 'depositar',
-        component: DespositarComponent
+        component: DepositarComponent
       },
       {
         path: 'editar-perfil',

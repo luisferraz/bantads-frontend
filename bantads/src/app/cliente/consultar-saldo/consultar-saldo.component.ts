@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Cliente, Conta, Usuario } from 'src/app/shared';
+import { ClienteService } from '../services';
+import { LoginService } from 'src/app/auth/services/login.service';
 
 @Component({
   selector: 'app-consultar-saldo',
@@ -6,10 +9,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./consultar-saldo.component.css']
 })
 export class ConsultarSaldoComponent implements OnInit {
+  conta!: Conta;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(
+    private clienteService: ClienteService
+  ) {
+    this.conta = new Conta();
   }
 
+  ngOnInit(): void {
+    if (this.clienteService.clienteLogado) {
+      this.clienteService.buscarContaPorCliente(this.clienteService.clienteLogado).subscribe(
+        (contas: Conta[]) => {
+          if ((contas != null) && (contas.length > 0)) {
+            this.conta = contas[0];
+          }
+        }
+      );
+    }
+  }
 }

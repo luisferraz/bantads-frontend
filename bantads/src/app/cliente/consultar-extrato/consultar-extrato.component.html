@@ -42,10 +42,8 @@
       <!-- ============================================================== -->
       <div class="row justify-content-center">
         <div class="col-lg-4 col-md-12">
-
-
-          <br><h2 style="margin-left: 10px">Saldo: {{saldo?.saldo| currency:'BRL'}}</h2>
-
+          <br>
+          <h2 style="margin-left: 10px">Saldo: {{ conta.saldo | currency:'BRL'}}</h2>
           <div class="table-responsive">
             <table class="table mb-0">
               <thead>
@@ -57,25 +55,20 @@
                   <th>Cliente Destino</th>
                   <th>Valor</th>
                 </tr>
-            </thead>
-                <tbody>
-                    <tr *ngFor="let transacao of extrato">
-                        <td> {{transacao.dataHora| date:'dd/MM/yyyy'}} </td>
-                        <td> {{transacao.dataHora | date:'HH:mm:ss'}} </td>
-                        <td> {{transacao.tipo}} </td>
-                        <td *ngIf="transacao.tipo === 'TRANSFERENCIA'"> {{transacao.idCliente}} </td>
-                        <td *ngIf="transacao.tipo !== 'TRANSFERENCIA'"> - </td>
-                        <td *ngIf="transacao.tipo === 'TRANSFERENCIA'"> {{transacao.idClienteDestino}} </td>
-                        <td *ngIf="transacao.tipo !== 'TRANSFERENCIA'"> - </td>
-                        <td *ngIf="transacao.tipo === 'SAQUE'" style="color: red;"> - {{transacao.valor | currency:'BRL'}} </td>
-                        <td *ngIf="transacao.tipo === 'DEPOSITO'" style="color: blue;"> {{transacao.valor | currency:'BRL'}} </td>
-                        <td *ngIf="transacao.valor < 0 && transacao.tipo === 'TRANSFERENCIA'" style="color: red;"> - {{transacao.valor | currency:'BRL'}} </td>
-                        <td *ngIf="transacao.valor >= 0 && transacao.tipo === 'TRANSFERENCIA'" style="color: blue;"> {{transacao.valor | currency:'BRL'}} </td>
-                    </tr>
-                </tbody>
+              </thead>
+              <tbody>
+                <tr [ngClass]="{
+                  'saida' : transacao.fluxo == Fluxo.Saida,
+                  'entrada': transacao.fluxo == Fluxo.Entrada }" *ngFor="let transacao of extrato">
+
+                  <td> {{transacao.dataHora | date:'dd/MM/yyyy'}} </td>
+                  <td> {{transacao.dataHora | date:'HH:mm:ss'}} </td>
+                  <td> {{transacao.tipo}} </td>
+
+              </tbody>
             </table>
           </div>
-            <p *ngIf=" extrato && extrato.length==0">Nenhuma operação realizada.</p>
+          <p *ngIf=" extrato && extrato.length==0">Nenhuma operação realizada.</p>
         </div>
       </div>
     </div>
@@ -87,7 +80,7 @@
     <!-- ============================================================== -->
     <footer class="footer text-center">
       2022 © Bantads UFPR
-      
+
     </footer>
     <!-- ============================================================== -->
     <!-- End footer -->

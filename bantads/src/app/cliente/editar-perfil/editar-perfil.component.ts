@@ -12,27 +12,27 @@ import { ClienteService } from '../services';
 export class EditarPerfilComponent implements OnInit {
 
   @ViewChild('formCliente') formCliente!: NgForm;
-
   cliente!: Cliente;
 
-  constructor(private ClienteService: ClienteService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private ClienteService: ClienteService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
-
-    let id = +this.route.snapshot.params['id'];
-    const res = this.ClienteService.buscarPorId(id);
-
-    if (res !== undefined){
-      this.cliente = res;
-    }else{
-      throw new Error ("Perfil não encontrado");
-    }
+    this.cliente = this.ClienteService.clienteLogado;
   }
 
-  atualizar(): void{
-    if(this.formCliente.form.valid){
-       this.ClienteService.atualizar(this.cliente);
-       this.router.navigate(['/cliente']);
+  atualizar($event: any): void {
+    $event.preventDefault();
+    if (this.formCliente.form.valid) {
+      this.ClienteService.atualizarCliente(this.cliente).subscribe(
+        (cliente: Cliente) => {
+          if (cliente != null) {
+            alert('Cliente atualizado com sucesso');
+          }
+        }
+      );
     }
   }
 }

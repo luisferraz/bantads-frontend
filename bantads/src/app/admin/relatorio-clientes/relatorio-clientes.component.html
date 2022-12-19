@@ -52,9 +52,9 @@
           <tr *ngFor="let conta of contas">
             <td>{{ conta.cliente?.nome }}</td>
             <td>{{ conta.cliente?.cpf! | mask : "CPF_CNPJ" }}</td>
-            <td>{{ conta.limite }}</td>
+            <td>{{ conta.limite | currency: "BRL" }}</td>
             <td>{{ conta.gerente?.nome }}</td>
-            <td>{{ conta.saldo }}</td>
+            <td>{{ conta.saldo | currency: "BRL" }}</td>
           </tr>
         </tbody>
       </table>

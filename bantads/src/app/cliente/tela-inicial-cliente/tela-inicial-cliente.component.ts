@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import SaldoResponse, { ClienteService } from '../services/cliente.service';
+import { LoginService } from 'src/app/auth/services/login.service';
+import { Cliente, Conta } from 'src/app/shared';
+
+import { ClienteService } from '../services';
 
 @Component({
   selector: 'app-tela-inicial-cliente',
@@ -8,27 +10,29 @@ import SaldoResponse, { ClienteService } from '../services/cliente.service';
   styleUrls: ['./tela-inicial-cliente.component.css']
 })
 export class TelaInicialClienteComponent implements OnInit {
+  conta!: Conta;
 
-  saldo?: SaldoResponse;
-
-  constructor(private clienteService: ClienteService, private route: ActivatedRoute) { }
-
-
-  ngOnInit(): void {
-    
+  constructor(
+    private clienteService: ClienteService,
+    private loginService: LoginService
+  ) {
+    this.conta = new Conta();
   }
 
-  getSaldo(): void {
-
-    let id = +this.route.snapshot.params['id'];
-    this.clienteService.getSaldo(id).subscribe((res) => {
-      if (res) {
-        console.log(res);
-        this.saldo = res;
+  ngOnInit(): void {
+    this.clienteService.buscarClientePorUsuario(this.loginService.usuarioLogado).subscribe(
+      (clientes: Cliente[]) => {
+        if ((clientes != null) && (clientes.length) > 0) {
+          this.clienteService.clienteLogado = clientes[0];
+          this.clienteService.buscarContaPorCliente(clientes[0]).subscribe(
+            (contas: Conta[]) => {
+              if ((contas != null) && (contas.length > 0)) {
+                this.conta = contas[0];
+              }
+            }
+          )
+        }
       }
-      else {
-        throw new Error('Falha ao carregar o saldo do cliente = ' + id);
-      }
-    });
+    );
   }
 }
