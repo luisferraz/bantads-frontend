@@ -48,6 +48,7 @@ export class ClienteService {
   }
 
   atualizarCliente(cliente: Cliente): Observable<Cliente> {
+    this.clienteLogado = cliente;
     return this.httpClient.put<Cliente>(this.BASE_URL + `clientes//${cliente.id}`, JSON.stringify(cliente), this.httpOptions);
   }
 
