@@ -10,32 +10,20 @@ import { LoginService } from 'src/app/auth/services/login.service';
 })
 export class ConsultarSaldoComponent implements OnInit {
   conta!: Conta;
-  cliente!: Cliente;
-
+  
   constructor(
-    private loginService: LoginService,
     private clienteService: ClienteService
   ) { }
 
   ngOnInit(): void {
-    this.clienteService.buscarClientePorUsuario(this.loginService.usuarioLogado).subscribe({
-      next:
-        (clientes: Cliente[]) => {
-          if ((clientes != null) && (clientes.length > 0)) {
-            this.cliente = clientes[0];
+    if (this.clienteService.clienteLogado) {
+      this.clienteService.buscarContaPorCliente(this.clienteService.clienteLogado).subscribe(
+        (contas: Conta[]) => {
+          if ((contas != null) && (contas.length > 0)) {
+            this.conta = contas[0];
           }
-        },
-      complete: () => {
-        this.clienteService.buscarContaPorCliente(this.cliente).subscribe(
-          (contas: Conta[]) => {
-            if ((contas != null) && (contas.length > 0)) {
-              this.conta = contas[0];
-            }
-          }
-        )
-      }
+        }
+      );
     }
-    );
   }
-
 }
