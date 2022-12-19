@@ -1,10 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { LoginService } from 'src/app/auth/services/login.service';
 import { Conta, Fluxo, TiposOperacao, Transacao, Usuario } from 'src/app/shared';
 import { Cliente } from 'src/app/shared/models/cliente.model';
-import { Transacao } from 'src/app/shared/models/transacao.model';
 
 const LS_CHAVE: string = "clientes";
 
@@ -32,17 +30,6 @@ export class ClienteService {
   public set clienteLogado(cliente: Cliente) {
     localStorage[LS_CHAVE] = JSON.stringify(cliente)
   }
-
-  public get contaCliente(): Conta {
-    let contaCliente = localStorage[LS_CHAVE];
-    return contaCliente ? JSON.parse(contaCliente) : null;
-  }
-
-  public set contaCliente(conta: Conta) {
-    localStorage[LS_CHAVE] = JSON.stringify(conta);
-  }
-
-
 
   salvarConta(novaConta: Conta) {
     return this.httpClient.post<Conta>(this.BASE_URL + 'contas', JSON.stringify(novaConta), this.httpOptions);
@@ -82,12 +69,11 @@ export class ClienteService {
 
             conta.saldo! += +valor;
 
-            this.atualizarConta(conta).subscribe({
-              next: (conta) => status = true,
-              complete: () => {
-                this.registrarTransacao(TiposOperacao.Deposito, valor, conta, Fluxo.Entrada);
+            this.atualizarConta(conta).subscribe(
+              (conta: Conta) => {
+                status = true;
+                this.registrarTransacao(TiposOperacao.Deposito, valor, conta, Fluxo.Entrada).subscribe();
               }
-            }
             );
           }
         }
@@ -107,14 +93,12 @@ export class ClienteService {
             if ((conta.saldo! + conta.limite! - valor) > 0) {
               conta.saldo! -= valor;
 
-              this.atualizarConta(conta).subscribe({
-                next: (conta) => status = true,
-                complete: () => {
-                  this.registrarTransacao(TiposOperacao.Saque, valor, conta, Fluxo.Saida);
+              this.atualizarConta(conta).subscribe(
+                (conta: Conta) => {
+                  status = true,
+                  this.registrarTransacao(TiposOperacao.Saque, valor, conta, Fluxo.Saida).subscribe();
                 }
-              }
               );
-
             }
           }
         }

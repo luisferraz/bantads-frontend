@@ -1,11 +1,14 @@
 import { Conta } from "./conta.model";
 
 export enum TiposOperacao {
-    Saque = 1, Deposito, Transferencia
+    Saque = 'SAQUE',
+    Deposito = 'DEPÓSITO',
+    Transferencia = 'TRANSFERÊNCIA'
 }
 
 export enum Fluxo {
-    Saida = 1, Entrada
+    Saida = 'SAÍDA',
+    Entrada = 'ENTRADA'
 }
 
 export class Transacao {

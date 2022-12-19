@@ -24,7 +24,7 @@
     {
       "nome": "Luis Cliente Teste",
       "email": "luis@email.com",
-      "senha": "wrc40r34",
+      "senha": "luis123",
       "perfil": "CLIENTE",
       "id": 4
     }
@@ -82,7 +82,7 @@
         "id": 1
       },
       "limite": 2500,
-      "saldo": 6298.249999999999,
+      "saldo": 6254.279999999999,
       "gerente": {
         "nome": "gerente teste",
         "email": "gerente@gerente.com.br",
@@ -93,5 +93,62 @@
       "id": 1
     }
   ],
-  "transacoes": []
+  "transacoes": [
+    {
+      "dataHora": "2022-12-19T16:33:11.747Z",
+      "tipo": "DEPÓSITO",
+      "valor": 0.5,
+      "contaOrigem": {
+        "numero": 254,
+        "cliente": {
+          "nome": "Luis Cliente Teste",
+          "email": "luis@email.com",
+          "cpf": "11111111111",
+          "telefone": "11111111111",
+          "salario": 5000,
+          "id": 1
+        },
+        "limite": 2500,
+        "saldo": 6304.279999999999,
+        "gerente": {
+          "nome": "gerente teste",
+          "email": "gerente@gerente.com.br",
+          "cpf": "11111111111",
+          "telefone": "11999999999",
+          "id": 1
+        },
+        "id": 1
+      },
+      "fluxo": "ENTRADA",
+      "id": 1
+    },
+    {
+      "dataHora": "2022-12-19T17:21:11.005Z",
+      "tipo": "SAQUE",
+      "valor": 50,
+      "contaOrigem": {
+        "numero": 254,
+        "cliente": {
+          "nome": "Luis Cliente Teste",
+          "email": "luis@email.com",
+          "cpf": "11111111111",
+          "telefone": "11111111111",
+          "salario": 5000,
+          "id": 1
+        },
+        "limite": 2500,
+        "saldo": 6254.279999999999,
+        "gerente": {
+          "nome": "gerente teste",
+          "email": "gerente@gerente.com.br",
+          "cpf": "11111111111",
+          "telefone": "11999999999",
+          "id": 1
+        },
+        "id": 1
+      },
+      "fluxo": "SAÍDA",
+      "id": 2
+    }
+  ]
 }

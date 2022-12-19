@@ -12,14 +12,17 @@ import { ClienteService } from '../services';
 export class SacarComponent implements OnInit {
 
   @ViewChild('formSacar') formSacar!: NgForm;
-  conta!: Conta = new Conta();
-  public valorSaque!: number = 0;
+  conta!: Conta;
+  public valorSaque!: number;
 
   constructor(
     private clienteService: ClienteService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {
+    this.conta = new Conta();
+    this.valorSaque = 0;
+  }
 
   ngOnInit(): void {
     this.clienteService.buscarContaPorCliente(this.clienteService.clienteLogado).subscribe(

@@ -41,9 +41,9 @@
       <!-- Three charts -->
       <!-- ============================================================== -->
       <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-12">
+        <div class="col-lg-10 col-md-12">
           <br>
-          <h2 style="margin-left: 10px">Saldo: {{ conta.saldo | currency:'BRL'}}</h2>
+          <h2>Saldo: {{ conta.saldo | currency:'BRL'}}</h2>
           <div class="table-responsive">
             <table class="table mb-0">
               <thead>
@@ -63,7 +63,14 @@
 
                   <td> {{transacao.dataHora | date:'dd/MM/yyyy'}} </td>
                   <td> {{transacao.dataHora | date:'HH:mm:ss'}} </td>
-                  <td> {{transacao.tipo}} </td>
+                  <td> {{transacao.tipo.toString()}} </td>
+                  <td> Conta: {{transacao.contaOrigem.numero}} - Cliente: {{transacao.contaOrigem.cliente?.nome}} </td>
+                  <td> <span *ngIf="transacao.contaDestino">
+                      Conta: {{transacao.contaDestino.numero}} - Cliente:
+                      {{transacao.contaDestino.cliente?.nome}}
+                    </span>
+                  </td>
+                  <td> {{transacao.valor | currency: "BRL"}}</td>
 
               </tbody>
             </table>
