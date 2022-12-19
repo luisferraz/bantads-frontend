@@ -51,25 +51,25 @@
                   <th>Data</th>
                   <th>Hora</th>
                   <th>Operação</th>
-                  <th>Cliente Origem</th>
-                  <th>Cliente Destino</th>
+                  <th>Origem</th>
+                  <th>Destino</th>
                   <th>Valor</th>
                 </tr>
               </thead>
               <tbody>
-                <tr [ngClass]="{
-                  'saida' : transacao.fluxo == Fluxo.Saida,
-                  'entrada': transacao.fluxo == Fluxo.Entrada }" *ngFor="let transacao of extrato">
+                <tr
+                  [ngClass]="{
+                  'saida' : ((transacao.tipo == TiposOperacao.Saque) || (transacao.contaOrigem?.numero == conta.numero)),
+                  'entrada': ((transacao.tipo == TiposOperacao.Deposito) || (transacao.contaDestino?.numero == conta.numero)) }"
+                  *ngFor="let transacao of extrato">
 
                   <td> {{transacao.dataHora | date:'dd/MM/yyyy'}} </td>
                   <td> {{transacao.dataHora | date:'HH:mm:ss'}} </td>
                   <td> {{transacao.tipo.toString()}} </td>
-                  <td> Conta: {{transacao.contaOrigem.numero}} - Cliente: {{transacao.contaOrigem.cliente?.nome}} </td>
-                  <td> <span *ngIf="transacao.contaDestino">
-                      Conta: {{transacao.contaDestino.numero}} - Cliente:
-                      {{transacao.contaDestino.cliente?.nome}}
-                    </span>
-                  </td>
+                  <td> <span *ngIf="transacao.contaOrigem">Conta: {{transacao.contaOrigem.numero}} - Cliente:
+                      {{transacao.contaOrigem.cliente?.nome}} </span></td>
+                  <td><span *ngIf="transacao.contaDestino"> Conta: {{transacao.contaDestino.numero}} -
+                      Cliente:{{transacao.contaDestino.cliente?.nome}}</span></td>
                   <td> {{transacao.valor | currency: "BRL"}}</td>
 
               </tbody>

@@ -6,11 +6,6 @@ export enum TiposOperacao {
     Transferencia = 'TRANSFERÊNCIA'
 }
 
-export enum Fluxo {
-    Saida = 'SAÍDA',
-    Entrada = 'ENTRADA'
-}
-
 export class Transacao {
     public id?: number
 
@@ -18,8 +13,7 @@ export class Transacao {
         public dataHora: Date,
         public tipo: TiposOperacao,
         public valor: number,
-        public contaOrigem: Conta,
-        public fluxo: Fluxo,
+        public contaOrigem?: Conta,
         public contaDestino?: Conta
     ) { }
 }
