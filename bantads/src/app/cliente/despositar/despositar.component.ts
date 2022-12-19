@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Conta } from 'src/app/shared';
 import { ClienteService } from '../services';
 
@@ -16,7 +16,8 @@ export class DespositarComponent implements OnInit {
 
   constructor(
     private clienteService: ClienteService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -24,10 +25,10 @@ export class DespositarComponent implements OnInit {
   }
 
   depositar() : void{
+    let id = +this.route.snapshot.params['id'];
     if(this.formSacar.form.valid){
-      this.clienteService.sacar(this.formSacar.form.value);
+      this.clienteService.sacar(this.formSacar.form.value, id);
       this.router.navigate(['/cliente']);
     }
   }
-
 }
