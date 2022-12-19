@@ -15,7 +15,9 @@ export class TelaInicialClienteComponent implements OnInit {
   constructor(
     private clienteService: ClienteService,
     private loginService: LoginService
-  ) { }
+  ) {
+    this.conta = new Conta();
+  }
 
   ngOnInit(): void {
     this.clienteService.buscarClientePorUsuario(this.loginService.usuarioLogado).subscribe(

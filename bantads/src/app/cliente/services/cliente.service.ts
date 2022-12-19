@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { LoginService } from 'src/app/auth/services/login.service';
-import { Conta, Usuario } from 'src/app/shared';
+import { Conta, Fluxo, TiposOperacao, Transacao, Usuario } from 'src/app/shared';
 import { Cliente } from 'src/app/shared/models/cliente.model';
 
 const LS_CHAVE: string = "clientes";
@@ -81,9 +81,12 @@ export class ClienteService {
 
             conta.saldo! += +valor;
 
-            this.atualizarConta(conta).subscribe(
-              (conta) => status = true
-
+            this.atualizarConta(conta).subscribe({
+              next: (conta) => status = true,
+              complete: () => {
+                this.registrarTransacao(TiposOperacao.Deposito, valor, conta, Fluxo.Entrada);
+              }
+            }
             );
           }
         }
@@ -103,10 +106,14 @@ export class ClienteService {
             if ((conta.saldo! + conta.limite! - valor) > 0) {
               conta.saldo! -= valor;
 
-              this.atualizarConta(conta).subscribe(
-                (conta) => status = true
-
+              this.atualizarConta(conta).subscribe({
+                next: (conta) => status = true,
+                complete: () => {
+                  this.registrarTransacao(TiposOperacao.Saque, valor, conta, Fluxo.Saida);
+                }
+              }
               );
+
             }
           }
         }
@@ -115,20 +122,14 @@ export class ClienteService {
     return of(status);
   }
 
-
-
-
-  listarTodos(): Cliente[] {
-    const clientes = localStorage[LS_CHAVE];
-    return clientes ? JSON.parse(clientes) : [];
+  registrarTransacao(tipo: TiposOperacao, valor: number, contaOrigem: Conta, fluxo: Fluxo, contaDestino?: Conta): Observable<Transacao> {
+    let transacao = new Transacao(new Date(), tipo, valor, contaOrigem, fluxo, contaDestino);
+    return this.httpClient.post<Transacao>(this.BASE_URL + 'transacoes', JSON.stringify(transacao), this.httpOptions);
   }
 
-
-  buscarPorId(id: number): Cliente | undefined {
-    const clientes: Cliente[] = this.listarTodos();
-    return clientes.find(cliente => cliente.id === id);
+  buscarTransacoesPorConta(conta: Conta): Observable<Transacao[]> {
+    return this.httpClient.get<Transacao[]>(this.BASE_URL + `transacoes?contaOrigem.id=${conta.id}`, this.httpOptions);
   }
-
 }
 
 

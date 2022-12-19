@@ -82,7 +82,7 @@
         "id": 1
       },
       "limite": 2500,
-      "saldo": 247.89000000000001,
+      "saldo": 6298.249999999999,
       "gerente": {
         "nome": "gerente teste",
         "email": "gerente@gerente.com.br",
@@ -92,5 +92,6 @@
       },
       "id": 1
     }
-  ]
+  ],
+  "transacoes": []
 }

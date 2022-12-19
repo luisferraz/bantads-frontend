@@ -10,10 +10,12 @@ import { LoginService } from 'src/app/auth/services/login.service';
 })
 export class ConsultarSaldoComponent implements OnInit {
   conta!: Conta;
-  
+
   constructor(
     private clienteService: ClienteService
-  ) { }
+  ) {
+    this.conta = new Conta();
+  }
 
   ngOnInit(): void {
     if (this.clienteService.clienteLogado) {
