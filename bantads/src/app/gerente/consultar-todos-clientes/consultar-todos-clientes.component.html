@@ -53,19 +53,20 @@
             <th>Saldo</th>
             <th>Detalhes</th>
           </tr>
-          <tr *ngFor="let cliente of clientes">
-            <td>{{ cliente.nome }}</td>
-            <td>{{ cliente.cpf! | mask : "CPF_CNPJ" }}</td>
-            <td>{{ cliente.endereco! }}</td>
+          <tr *ngFor="let conta of contas">
+            <td>{{ conta.cliente?.nome }}</td>
+            <td>{{ conta.cliente?.cpf! | mask : "CPF_CNPJ" }}</td>
+            <td>{{ conta.cliente?.endereco! }}</td>
+            <td>{{ conta.saldo }}</td>
             <td class="text-center" style="width: 300px">
-              <a href="#" style="margin-right: 5px" title="Detalhes" alt="Detalhes" class="btn btn-xs btn-info">
-                <i class="fa fa-plus" aria-hidden="true"></i> Detalhes do Cliente
+              <a href="#" title="Detalhes" alt="Detalhes" class="btn btn-xs btn-info">
+                <i class="fa fa-plus" aria-hidden="true"></i>  Detalhes do Cliente
               </a>
             </td>
           </tr>
         </tbody>
       </table>
-      <p *ngIf="clientes.length == 0">Nenhum cliente cadastrado.</p>
+      <p *ngIf="contas.length == 0">Nenhum cliente cadastrado.</p>
       <!-- ============================================================== -->
       <!-- End Container fluid  -->
       <!-- ============================================================== -->

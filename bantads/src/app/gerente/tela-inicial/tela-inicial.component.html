@@ -51,13 +51,13 @@
               <th>Salário</th>
               <th>Ações</th>
             </tr>
-            <tr *ngFor="let cliente of clientes">
-              <td>{{ cliente.nome }}</td>
-              <td>{{ cliente.cpf! | mask : "CPF_CNPJ" }}</td>
-              <td>{{ cliente.salario! | currency:'BRL'}}</td>
+            <tr *ngFor="let conta of contas">
+              <td>{{ conta.cliente?.nome }}</td>
+              <td>{{ conta.cliente?.cpf! | mask : "CPF_CNPJ" }}</td>
+              <td>{{ conta.cliente?.salario! | currency:'BRL'}}</td>
               <td class="text-center" style="width: 300px">
                 <a
-                  [routerLink]="['/gerente/aceitar-cliente', cliente.id]"
+                  [routerLink]="['/gerente/aceitar-cliente', conta.cliente?.id]"
                   href="#"
                   style="margin-right: 5px"
                   title="Aceitar"
@@ -67,7 +67,7 @@
                   <i class="fa fa-check" aria-hidden="true"></i> Aceitar
                 </a>
                 <a
-                  [routerLink]="['/gerente/recusar-cliente', cliente.id ]"
+                  [routerLink]="['/gerente/recusar-cliente', conta.cliente?.id ]"
                   href="#"
                   title="Remover"
                   alt="Remover"
@@ -79,7 +79,7 @@
             </tr>
           </tbody>
         </table>
-        <p *ngIf="clientes.length == 0">Nenhum cliente pendente.</p>
+        <p *ngIf="contas.length == 0">Nenhum cliente pendente.</p>
         <!-- ============================================================== -->
         <!-- End Container fluid  -->
         <!-- ============================================================== -->

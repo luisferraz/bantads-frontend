@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Cliente } from 'src/app/shared';
+import { Cliente, Conta, Gerente } from 'src/app/shared';
 import { GerenteService } from '../services';
+import { LoginService } from 'src/app/auth/services/login.service';
 
 @Component({
   selector: 'app-tela-inicial',
@@ -9,24 +10,35 @@ import { GerenteService } from '../services';
 })
 export class TelaInicialComponent implements OnInit {
 
-  clientes: Cliente[] = [];
+  contas: Conta[] = [];
 
-  constructor(private gerenteService: GerenteService) { }
+  constructor(private gerenteService: GerenteService, private loginService : LoginService) { }
 
   ngOnInit(): void {
-    this.clientes = this.listarClientesPendentes();
+    this.gerenteService.buscarGerentePorUsuario(this.loginService.usuarioLogado).subscribe(
+      (gerentes: Gerente[]) => {
+        if ((gerentes != null) && (gerentes.length) > 0) {
+          let gerente = gerentes.filter(gerente => gerente.email === this.loginService.usuarioLogado.email);
+          this.gerenteService.gerenteLogado = gerente[0];
+          this.contas.forEach((conta) => console.log(conta.cliente?.usuario?.email))
+        }
+      }
+    );
+    this.contas = this.listarClientes();
   }
-
-  listarClientesPendentes(): Cliente[] {
-    this.gerenteService.listarClientesPendentes().subscribe(
-      (data: Cliente[]) => {
+   
+  listarClientes(): Conta[] {
+    this.gerenteService.listarContas().subscribe(
+      (data: Conta[]) => {
         if(data == null) {
-          this.clientes = []
+          this.contas = []
         } else {
-          this.clientes = data;
+          this.contas = data.filter(conta => conta.gerente?.id === this.gerenteService.gerenteLogado.id);
+          console.log(this.gerenteService.gerenteLogado.id)
+          this.contas.forEach((conta) => console.log(conta.cliente?.email))
+
         }
       });
-      return this.clientes
+      return this.contas
   }
-
 }

@@ -34,23 +34,12 @@ export class AutocadastroComponent implements OnInit {
           let limite: number = cli.salario! / 2;
           this.adminService.listarTodosGerentes().subscribe(
             (gerentes: Gerente[]) => {
-
-              //Cria um usuario pra ele (so vai ter depois de aprovar mas preciso testar)
-              let senha = Math.random().toString(36).slice(-8);
-              const novoUsuario: Usuario = new Usuario(cli.nome, cli.email, senha, 'CLIENTE');
-              this.adminService.inserirUsuario(novoUsuario).subscribe((usu: Usuario) => {
-                cli.usuario = usu;
-                this.clienteService.atualizarCliente(cli).subscribe();
-              });
-
               //Eh pra ser o gerente com menos clientes, mas aqui vou associar qualquer um
               let randomGerente: Gerente = gerentes[Math.floor(Math.random() * gerentes.length)];
-
               //Cria a conta pro carinha
               const novaConta: Conta = new Conta(numero, cli, limite, 0, randomGerente);
               this.clienteService.salvarConta(novaConta).subscribe(
                 (conta: Conta) => {
-                  //Cria um usuario pra ele tbm 
                   this.router.navigate(['/login']);
                 }
               );
