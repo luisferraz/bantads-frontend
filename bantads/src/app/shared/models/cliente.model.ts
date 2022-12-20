@@ -1,5 +1,4 @@
 import { Endereco } from "./endereco.model";
-import { Gerente } from "./gerente.model";
 import { Usuario } from "./usuario.model";
 
 export class Cliente {

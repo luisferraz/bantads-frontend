@@ -49,4 +49,8 @@ export class AdminService {
   inserirUsuario(novoUsuario: Usuario): Observable<Usuario> {
     return this.httpClient.post<Usuario>(this.BASE_URL + 'usuarios', JSON.stringify(novoUsuario), this.httpOptions);
   }
+
+  alterarUsuario(usuario: Usuario): Observable<Usuario> {
+    return this.httpClient.put<Usuario>(this.BASE_URL + `usuarios/${usuario.id}`, JSON.stringify(usuario), this.httpOptions);
+  }
 }

@@ -58,6 +58,11 @@
                 </div>
               </div>
               <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" mask="CPF_CNPJ" minlength="2" required
+                  [(ngModel)]="cliente.cpf" #cpf="ngModel" disabled="" />
+              </div>
+              <div class="form-group">
                 <label for="endereco">Endereço:</label>
                 <input type="text" class="form-control" id="endereco" name="endereco" required
                   [(ngModel)]="cliente.endereco" #endereco="ngModel" />
@@ -76,7 +81,7 @@
               <div class="form-group">
                 <label for="telefone">Telefone:</label>
                 <input type="text" class="form-control" id="telefone" name="telefone" required
-                  [(ngModel)]="cliente.telefone" #telefone="ngModel" minlength="11" mask="(00)00000-0000"/>
+                  [(ngModel)]="cliente.telefone" #telefone="ngModel" minlength="11" mask="(00)00000-0000" />
                 <div *ngIf="telefone.errors && (telefone.dirty || telefone.touched)" class="alert alert-danger">
                   <div>Digite seu telefone.</div>
                 </div>
@@ -92,11 +97,8 @@
 
               <div class="form-group">
                 <button type="button" class="btn btn-primary" (click)="atualizar($event)">
-                  <i class="fa fa-save" aria-hidden="true"></i>Atualizar
+                  <i class="fa fa-save" aria-hidden="true"></i> Atualizar
                 </button>
-                <a class="btn btn-secundary">
-                  <i class="fa fa-arrow-left" aria-hidden="true"></i>Voltar
-                </a>
               </div>
             </form>
           </div>
@@ -111,7 +113,7 @@
     <!-- ============================================================== -->
     <footer class="footer text-center">
       2022 © Bantads UFPR
-      
+
     </footer>
     <!-- ============================================================== -->
     <!-- End footer -->

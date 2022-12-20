@@ -25,7 +25,7 @@
     <div class="page-breadcrumb bg-white">
       <div class="row align-items-center">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-          <h4 class="page-title">Sacar</h4>
+          <h4 class="page-title">Sacar - Conta: {{conta.numero}}</h4>
         </div>
       </div>
       <!-- /.col-lg-12 -->
@@ -37,6 +37,29 @@
     <!-- Container fluid  -->
     <!-- ============================================================== -->
     <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-12">
+          <div class="white-box analytics-info">
+            <h3 class="box-title">Saldo</h3>
+            <ul class="list-inline two-part d-flex align-items-center mb-0">
+              <li>
+                <div id="sparklinedash2">
+                  <canvas width="67" height="30" style="
+                                              display: inline-block;
+                                              width: 67px;
+                                              height: 30px;
+                                              vertical-align: top;
+                                            "></canvas>
+                </div>
+              </li>
+              <li class="ms-auto">
+                <span class="counter" [style.color]="conta.saldo! > 0 ? 'green': 'red'">{{ conta.saldo | currency: "BRL"
+                  }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
       <!-- ============================================================== -->
       <!-- RECENT SALES -->
       <!-- ============================================================== -->
@@ -44,8 +67,8 @@
         <form #formSacar="ngForm">
           <div class="form-group">
             <label for="valor">Valor:</label>
-            <input type="text" class="form-control" id="valor" name="valor" currencyMask required 
-            [(ngModel)]="valorSaque"/>
+            <input type="text" class="form-control" id="valor" name="valor" currencyMask required
+              [(ngModel)]="valorSaque" />
           </div>
           <div class="form-group">
             <button type="button" class="btn btn-primary" style="margin-right: 10px" (click)="sacar()"

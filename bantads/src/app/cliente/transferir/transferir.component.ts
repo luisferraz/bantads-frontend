@@ -20,6 +20,7 @@ export class TransferirComponent implements OnInit {
     private router: Router,
   ) {
     this.conta = new Conta();
+    this.valorTransf = 0;
   }
 
   ngOnInit(): void {

@@ -24,7 +24,7 @@
     {
       "nome": "Luis Cliente Teste",
       "email": "luis@email.com",
-      "senha": "luis123",
+      "senha": "wrc40r34",
       "perfil": "CLIENTE",
       "id": 4
     },
@@ -34,6 +34,13 @@
       "senha": "segundo",
       "perfil": "CLIENTE",
       "id": 5
+    },
+    {
+      "nome": "Novo cara teste",
+      "email": "novo@email.com",
+      "senha": "qrjxyrdg",
+      "perfil": "CLIENTE",
+      "id": 6
     }
   ],
   "gerentes": [
@@ -65,7 +72,7 @@
       "email": "luis@email.com",
       "cpf": "11111111111",
       "telefone": "11111111111",
-      "salario": 10000,
+      "salario": 5000,
       "id": 1,
       "usuario": {
         "nome": "Luis Cliente Teste",
@@ -74,7 +81,7 @@
         "perfil": "CLIENTE",
         "id": 4
       },
-      "endereco": "Riua centro 350"
+      "endereco": "Riua centro 999"
     },
     {
       "nome": "segundo cliente",
@@ -90,6 +97,21 @@
         "perfil": "CLIENTE",
         "id": 5
       }
+    },
+    {
+      "nome": "Novo cara teste",
+      "email": "novo@email.com",
+      "cpf": "66666666666",
+      "telefone": "49111111111",
+      "salario": 9999.99,
+      "id": 3,
+      "usuario": {
+        "nome": "Novo cara teste",
+        "email": "novo@email.com",
+        "senha": "qrjxyrdg",
+        "perfil": "CLIENTE",
+        "id": 6
+      }
     }
   ],
   "contas": [
@@ -104,7 +126,7 @@
         "id": 1
       },
       "limite": 2500,
-      "saldo": 7785.279999999999,
+      "saldo": -214.72000000000116,
       "gerente": {
         "nome": "gerente teste",
         "email": "gerente@gerente.com.br",
@@ -134,6 +156,27 @@
         "id": 2
       },
       "id": 2
+    },
+    {
+      "numero": 64,
+      "cliente": {
+        "nome": "Novo cara teste",
+        "email": "novo@email.com",
+        "cpf": "66666666666",
+        "telefone": "49111111111",
+        "salario": 9999.99,
+        "id": 3
+      },
+      "limite": 4999.995,
+      "saldo": 0,
+      "gerente": {
+        "nome": "Fran",
+        "email": "fran@fran.",
+        "cpf": "00000000000",
+        "telefone": "41090909888",
+        "id": 2
+      },
+      "id": 3
     }
   ],
   "transacoes": [
@@ -238,6 +281,60 @@
         "id": 2
       },
       "id": 3
+    },
+    {
+      "dataHora": "2022-12-19T22:49:01.108Z",
+      "tipo": "SAQUE",
+      "valor": 8000,
+      "contaOrigem": {
+        "numero": 254,
+        "cliente": {
+          "nome": "Luis Cliente Teste",
+          "email": "luis@email.com",
+          "cpf": "11111111111",
+          "telefone": "11111111111",
+          "salario": 5000,
+          "id": 1
+        },
+        "limite": 2500,
+        "saldo": -214.72000000000116,
+        "gerente": {
+          "nome": "gerente teste",
+          "email": "gerente@gerente.com.br",
+          "cpf": "11111111111",
+          "telefone": "11999999999",
+          "id": 1
+        },
+        "id": 1
+      },
+      "id": 4
+    },
+    {
+      "dataHora": "2022-12-20T00:41:30.105Z",
+      "tipo": "SAQUE",
+      "valor": 0,
+      "contaOrigem": {
+        "numero": 254,
+        "cliente": {
+          "nome": "Luis Cliente Teste",
+          "email": "luis@email.com",
+          "cpf": "11111111111",
+          "telefone": "11111111111",
+          "salario": 5000,
+          "id": 1
+        },
+        "limite": 2500,
+        "saldo": -214.72000000000116,
+        "gerente": {
+          "nome": "gerente teste",
+          "email": "gerente@gerente.com.br",
+          "cpf": "11111111111",
+          "telefone": "11999999999",
+          "id": 1
+        },
+        "id": 1
+      },
+      "id": 5
     }
   ]
 }
