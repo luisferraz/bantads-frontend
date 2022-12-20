@@ -12,6 +12,7 @@ import { GerenteService } from '../services';
 })
 export class AprovarClienteComponent implements OnInit {
   cliente!: Cliente;
+  conta!: Conta;
   usuarioCliente!: Usuario;
 
   constructor(
@@ -20,42 +21,57 @@ export class AprovarClienteComponent implements OnInit {
     private clienteService: ClienteService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.usuarioCliente = new Usuario();
 
     let id = +this.route.snapshot.params['id'];
-    const res = this.gerenteService
-      .buscarClientePorId(id)
-      .subscribe((cl: Cliente) => {
-        if (cl != null) {
-          this.cliente = cl;
-        } else {
-          throw new Error('Cliente não encontrado: id = ' + id);
+    this.gerenteService.buscarContaPorId(id).subscribe(
+      (conta: Conta) => {
+        if (conta != null) {
+          this.conta = conta;
+          this.gerenteService.buscarClientePorId(conta.cliente?.id!).subscribe(
+            (cliente: Cliente) => {
+              if (cliente != null) {
+                this.cliente = cliente;
+              }
+            }
+          );
         }
-      });
-  }
+      }
+    );
+  };
+
 
   aceitarCliente() {
-    let id = +this.route.snapshot.params['id'];
-    this.gerenteService.buscarClientePorId(id)
-      .subscribe((cli: Cliente) => {
-        //Cria um usuario pra ele (so vai ter depois de aprovar mas preciso testar)
-        let senha = Math.random().toString(36).slice(-8);
-        const novoUsuario: Usuario = new Usuario(
-          cli.nome,
-          cli.email,
-          senha,
-          'CLIENTE',
-        );
-        this.adminService
-          .inserirUsuario(novoUsuario)
-          .subscribe((usu: Usuario) => {
-            cli.usuario = usu;
-            this.clienteService.atualizarCliente(cli).subscribe();
-          });
-      });
-      this.router.navigate(['/gerente']);
+    this.conta!.ativa = true;
+
+    this.clienteService.atualizarConta(this.conta).subscribe(
+      (conta: Conta) => {
+        if (conta != null) {
+          let senha = Math.random().toString(36).slice(-8);
+          const novoUsuario: Usuario = new Usuario(
+            this.cliente.nome,
+            this.cliente.email,
+            senha,
+            'CLIENTE',
+          );
+          this.adminService.inserirUsuario(novoUsuario).subscribe(
+            (usuario: Usuario) => {
+              if (usuario != null) {
+                this.cliente.usuario = usuario;
+                this.clienteService.atualizarCliente(this.cliente).subscribe(
+                  (cliente: Cliente) => {
+                    this.router.navigate(['/gerente']);
+                  }
+                );
+              }
+            }
+          );
+        }
+      }
+    );
+
   }
 }

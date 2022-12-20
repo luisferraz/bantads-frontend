@@ -11,9 +11,9 @@ const LS_CHAVE: string = "gerentes";
 })
 
 export class GerenteService {
-  
+
   private BASE_URL = "http://localhost:3000/";
-  
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -28,23 +28,30 @@ export class GerenteService {
   public set gerenteLogado(gerente: Gerente) {
     localStorage[LS_CHAVE] = JSON.stringify(gerente)
   }
-  
+
   constructor(private httpClient: HttpClient) { }
 
   recusar(cliente: Cliente): void {
-    
+
   }
-  
+
   buscarClientePorId(idCliente: number): Observable<Cliente> {
     return this.httpClient.get<Cliente>(`${this.BASE_URL}clientes/${idCliente}`, this.httpOptions);
   }
 
   listarContas(): Observable<Conta[]> {
     return this.httpClient.get<Conta[]>(this.BASE_URL + 'contas', this.httpOptions);
-  }   
+  }
 
   buscaContasPorGerente(gerente: Gerente): Observable<Conta[]> {
     return this.httpClient.get<Conta[]>(this.BASE_URL + `contas?gerente.id=${gerente.id}`, this.httpOptions);
+  }
+  buscaContasInativasPorGerente(gerente: Gerente): Observable<Conta[]> {
+    return this.httpClient.get<Conta[]>(this.BASE_URL + `contas?gerente.id=${gerente.id}&ativa=false`, this.httpOptions);
+  }
+
+  buscarContaPorId(contaId: number): Observable<Conta> {
+    return this.httpClient.get<Conta>(this.BASE_URL +  `contas\\${contaId}`, this.httpOptions);
   }
 
   buscarGerentePorUsuario(usuario: Usuario): Observable<Gerente[]> {
@@ -54,5 +61,6 @@ export class GerenteService {
   inserirUsuárioCliente(user: Usuario): Observable<Usuario> {
     return this.httpClient.post<Usuario>(this.BASE_URL + 'usuarios', JSON.stringify(user), this.httpOptions);
   }
-  
+
+
 }
