@@ -35,7 +35,7 @@ export class SacarComponent implements OnInit {
   }
 
   sacar(): void {
-    if (this.formSacar.form.valid) {
+    if ((this.formSacar.form.valid) && (this.valorSaque > 0)) {
       this.clienteService.sacar(this.valorSaque).subscribe(
         (status: boolean) => {
           // alert(status ? 'Saque realizado com sucesso.' : 'Erro ao realizar saque.');

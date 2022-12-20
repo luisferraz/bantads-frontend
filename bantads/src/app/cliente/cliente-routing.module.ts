@@ -6,6 +6,7 @@ import { EditarPerfilComponent } from "./editar-perfil/editar-perfil.component";
 import { SacarComponent } from "./sacar/sacar.component";
 import { TelaInicialClienteComponent } from "./tela-inicial-cliente/tela-inicial-cliente.component";
 import { AuthGuard } from "../auth/auth.guard";
+import { TransferirComponent } from "./transferir/transferir.component";
 
 export const ClienteRoutes: Routes = [
   {
@@ -39,6 +40,10 @@ export const ClienteRoutes: Routes = [
       {
         path: 'sacar',
         component: SacarComponent
+      },
+      {
+        path: 'transferir',
+        component: TransferirComponent
       },
       {
         path: 'inicial',

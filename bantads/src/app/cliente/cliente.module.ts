@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { NgxMaskModule } from 'ngx-mask';
-import { SharedModule } from '../shared';
 
+import { SharedModule } from '../shared';
 import { AutocadastroComponent } from './autocadastro/autocadastro.component';
 import { ConsultarExtratoComponent } from './consultar-extrato/consultar-extrato.component';
 import { ConsultarSaldoComponent } from './consultar-saldo/consultar-saldo.component';

@@ -25,7 +25,7 @@
     <div class="page-breadcrumb bg-white">
       <div class="row align-items-center">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-          <h4 class="page-title">Extrato</h4>
+          <h4 class="page-title">Extrato - Conta: {{conta.numero}}</h4>
         </div>
       </div>
       <!-- /.col-lg-12 -->
@@ -41,9 +41,9 @@
       <!-- Three charts -->
       <!-- ============================================================== -->
       <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-12">
+        <div class="col-lg-10 col-md-12">
           <br>
-          <h2 style="margin-left: 10px">Saldo: {{ conta.saldo | currency:'BRL'}}</h2>
+          <h2> Saldo: <span [style.color]="conta.saldo! > 0 ? 'green': 'red'">{{ conta.saldo | currency:'BRL'}}</span></h2>
           <div class="table-responsive">
             <table class="table mb-0">
               <thead>
@@ -51,19 +51,26 @@
                   <th>Data</th>
                   <th>Hora</th>
                   <th>Operação</th>
-                  <th>Cliente Origem</th>
-                  <th>Cliente Destino</th>
+                  <th>Origem</th>
+                  <th>Destino</th>
                   <th>Valor</th>
                 </tr>
               </thead>
               <tbody>
-                <tr [ngClass]="{
-                  'saida' : transacao.fluxo == Fluxo.Saida,
-                  'entrada': transacao.fluxo == Fluxo.Entrada }" *ngFor="let transacao of extrato">
+                <tr
+                  [ngClass]="{
+                  'saida' : ((transacao.tipo == TiposOperacao.Saque) || (transacao.contaOrigem?.numero == conta.numero)),
+                  'entrada': ((transacao.tipo == TiposOperacao.Deposito) || (transacao.contaDestino?.numero == conta.numero)) }"
+                  *ngFor="let transacao of extrato">
 
                   <td> {{transacao.dataHora | date:'dd/MM/yyyy'}} </td>
                   <td> {{transacao.dataHora | date:'HH:mm:ss'}} </td>
-                  <td> {{transacao.tipo}} </td>
+                  <td> {{transacao.tipo.toString()}} </td>
+                  <td> <span *ngIf="transacao.contaOrigem">Conta: {{transacao.contaOrigem.numero}} - Cliente:
+                      {{transacao.contaOrigem.cliente?.nome}} </span></td>
+                  <td><span *ngIf="transacao.contaDestino"> Conta: {{transacao.contaDestino.numero}} -
+                      Cliente:{{transacao.contaDestino.cliente?.nome}}</span></td>
+                  <td> {{transacao.valor | currency: "BRL"}}</td>
 
               </tbody>
             </table>
