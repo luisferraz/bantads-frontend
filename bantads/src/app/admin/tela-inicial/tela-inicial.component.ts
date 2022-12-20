@@ -39,7 +39,7 @@ export class TelaInicialComponent implements OnInit {
                   .reduce((acum, obj) => { return acum + (obj.saldo! > 0 ? obj.saldo! : 0) }, 0);
                 //Total saldo Negativo
                 let totalSaldoNegativo: number = contas
-                  .reduce((acum, obj) => { return acum + (obj.saldo! < 0 ? obj.saldo! : 0) }, 0);
+                  .reduce((acum, obj) => { return acum - (obj.saldo! < 0 ? obj.saldo! : 0) }, 0);
 
                 var obj: Record<string, any> = {
                   ...gerente,
@@ -49,7 +49,7 @@ export class TelaInicialComponent implements OnInit {
                 }
                 //insere o objeto no array utilizado no componente
                 this.gerentesComTotais.push(obj);
-                this.totalSaldo += totalSaldoPositivo + totalSaldoNegativo;
+                this.totalSaldo += totalSaldoPositivo - totalSaldoNegativo;
                 this.totalClientes += totalClientes;
                 this.totalGerentes++;
               }
