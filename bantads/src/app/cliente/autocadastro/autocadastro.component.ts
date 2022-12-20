@@ -5,6 +5,7 @@ import { AdminService } from 'src/app/admin/services';
 import { Cliente, Conta, Gerente, Usuario } from 'src/app/shared';
 
 import { ClienteService } from '../services';
+import { LoginService } from 'src/app/auth/services/login.service';
 
 @Component({
   selector: 'app-autocadastro',
@@ -16,10 +17,15 @@ export class AutocadastroComponent implements OnInit {
   cliente!: Cliente;
 
   constructor(
+    private loginService: LoginService,
     private clienteService: ClienteService,
     private adminService: AdminService,
     private router: Router
-  ) { }
+  ) {
+    if (this.loginService.usuarioLogado) {
+      this.router.navigate([`${this.loginService.usuarioLogado.perfil?.toLowerCase()}`]);
+    }
+  }
 
   ngOnInit(): void {
     this.cliente = new Cliente();
@@ -51,7 +57,9 @@ export class AutocadastroComponent implements OnInit {
               this.clienteService.salvarConta(novaConta).subscribe(
                 (conta: Conta) => {
                   //Cria um usuario pra ele tbm 
-                  this.router.navigate(['/login']);
+                  this.router.navigate(['/login'], {
+                    queryParams: { error: 'Solicitação de cadastro enviada! Aguarde a resposta em seu e-mail!' },
+                  });
                 }
               );
             }

@@ -23,6 +23,7 @@ export class DepositarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.valorDeposito = 0;
     this.clienteService.buscarContaPorCliente(this.clienteService.clienteLogado).subscribe(
       (contas: Conta[]) => {
         if ((contas != null) && (contas.length > 0)) {
@@ -33,7 +34,7 @@ export class DepositarComponent implements OnInit {
   }
 
   depositar(): void {
-    if (this.formDepositar.form.valid) {
+    if ((this.formDepositar.form.valid) && (this.valorDeposito > 0)) {
       this.clienteService.depositar(this.valorDeposito).subscribe(
         (result: boolean) => {
           alert('Depósito realizado com sucesso.');

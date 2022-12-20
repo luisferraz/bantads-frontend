@@ -16,115 +16,102 @@
 
 <body>
   <!-- ============================================================== -->
-  <!-- Main wrapper - style you can find in pages.scss -->
+  <!-- Page wrapper  -->
   <!-- ============================================================== -->
-  <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
-    data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+  <div class="page-wrapper">
     <!-- ============================================================== -->
-    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
-    <header class="topbar" data-navbarbg="skin5">
-      <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-        <div class="navbar-header" data-logobg="skin6">
-          <!-- ============================================================== -->
-          <!-- Logo -->
-          <!-- ============================================================== -->
-          <a class="navbar-brand" href="/cliente">
-            <!-- Logo icon -->
-            <b class="logo-icon">
-              <!-- Dark Logo icon -->
-              <img src="assets/plugins/images/logo-icon.png" alt="homepage" />
-            </b>
-            <!--End Logo icon -->
-            <!-- Logo text -->
-            <span class="logo-text">
-              <!-- dark Logo text -->
-              <img src="assets/plugins/images/logo-text.png" alt="homepage" />
-            </span>
-          </a>
-          <!-- ============================================================== -->
-          <!-- End Logo -->
-          <!-- ============================================================== -->
-          <!-- ============================================================== -->
-          <!-- toggle and nav items -->
-          <!-- ============================================================== -->
-          <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none" href="javascript:void(0)"><i
-              class="ti-menu ti-close"></i></a>
+    <div class="page-breadcrumb bg-white">
+      <div class="row align-items-center">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+          <h4 class="page-title">Transferir - Conta: {{conta.numero}}</h4>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Logo -->
-        <!-- ============================================================== -->
-        <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-          <!-- ============================================================== -->
-          <!-- Right side toggle and nav items -->
-          <!-- ============================================================== -->
-          <ul class="navbar-nav ms-auto d-flex align-items-center">
-            <!-- ============================================================== -->
-            <!-- User profile and search -->
-            <!-- ============================================================== -->
-            <li>
-              <a class="profile-pic" href="/cliente">
-                <img src="assets/plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle" /><span
-                  class="text-white font-medium">Cliente</span></a>
-            </li>
-            <!-- ============================================================== -->
-            <!-- User profile and search -->
-            <!-- ============================================================== -->
-          </ul>
-        </div>
-      </nav>
-    </header>
-    <!-- ============================================================== -->
-    <!-- End Topbar header -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Page wrapper  -->
-    <!-- ============================================================== -->
-    <div class="page-wrapper">
-      <!-- ============================================================== -->
-      <!-- Bread crumb and right sidebar toggle -->
-      <!-- ============================================================== -->
-      <div class="page-breadcrumb bg-white">
-        <div class="row align-items-center">
-          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Tranferir</h4>
-          </div>
-        </div>
-        <!-- /.col-lg-12 -->
       </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
       <!-- ============================================================== -->
-      <!-- End Bread crumb and right sidebar toggle -->
+      <!-- Three charts -->
       <!-- ============================================================== -->
-      <!-- ============================================================== -->
-      <!-- Container fluid  -->
-      <!-- ============================================================== -->
-      <div class="container-fluid">
-        <!-- ============================================================== -->
-        <!-- Three charts -->
-        <!-- ============================================================== -->
-        <div class="row justify-content-center">
-          <div class="col-lg-4 col-md-12">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-12">
+          <div class="white-box analytics-info">
+            <h3 class="box-title">Saldo</h3>
+            <ul class="list-inline two-part d-flex align-items-center mb-0">
+              <li>
+                <div id="sparklinedash2">
+                  <canvas width="67" height="30" style="
+                          display: inline-block;
+                          width: 67px;
+                          height: 30px;
+                          vertical-align: top;
+                        "></canvas>
+                </div>
+              </li>
+              <li class="ms-auto">
+                <span class="counter" [style.color]="conta.saldo! > 0 ? 'green': 'red'">{{ conta.saldo | currency: "BRL" }}</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
+
+      <div class="well">
+        <form #formTransf="ngForm">
+          <div class="form-group">
+            <label for="numero">Número da conta de Destino</label>
+            <input type="text" class="form-control" id="numero" name="numero" [(ngModel)]="contaDestino"
+              #numero="ngModel" required />
+            <div *ngIf="numero.errors && (numero.dirty || numero.touched)" class="alert alert-danger">
+              <div [hidden]="!numero?.errors?.['required']">
+                Digite o número da conta destino da transferência.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="valor">Valor a ser transferido:</label>
+            <input type="text" class="form-control" id="valor" name="valor" currencyMask [(ngModel)]="valorTransf"
+              #valor="ngModel" required />
+            <div *ngIf="valor.errors && (valor.dirty || valor.touched)" class="alert alert-danger">
+              <div [hidden]="!valor?.errors?.['required']">
+                Informe o valor a ser transferido.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-primary" style="margin-right: 10px" (click)="transferir()"
+              [disabled]="!formTransf.form.valid">
+              <i class="fa fa-exchange" aria-hidden="true"></i> Transferir
+            </button>
+          </div>
+        </form>
+      </div>
+
       <!-- ============================================================== -->
       <!-- End Container fluid  -->
       <!-- ============================================================== -->
       <!-- ============================================================== -->
-      <!-- footer -->
-      <!-- ============================================================== -->
-      <footer class="footer text-center">
-        2022 © Bantads UFPR
-        
-      </footer>
-      <!-- ============================================================== -->
-      <!-- End footer -->
-      <!-- ============================================================== -->
     </div>
+    <!-- footer -->
     <!-- ============================================================== -->
-    <!-- End Page wrapper  -->
+    <footer class="footer text-center">
+      2022 © Bantads UFPR
+
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
     <!-- ============================================================== -->
   </div>
+  <!-- ============================================================== -->
+  <!-- End Page wrapper  -->
+  <!-- ============================================================== -->
 </body>
 
 </html>

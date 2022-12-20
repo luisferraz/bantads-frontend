@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Conta, Transacao, TiposOperacao, Fluxo } from 'src/app/shared';
+import { Conta, Transacao, TiposOperacao } from 'src/app/shared';
 import { ClienteService } from '../services';
 
 @Component({
@@ -12,7 +12,6 @@ export class ConsultarExtratoComponent implements OnInit {
   extrato: Transacao[] = [];
 
   public TiposOperacao = TiposOperacao;
-  public Fluxo = Fluxo;
 
   constructor(
     private clienteService: ClienteService
@@ -26,10 +25,13 @@ export class ConsultarExtratoComponent implements OnInit {
         if (contas != null) {
           this.conta = contas[0];
 
-          this.clienteService.buscarTransacoesPorConta(this.conta).subscribe(
+          this.clienteService.buscarTodasTransacoes().subscribe(
             (transacoes: Transacao[]) => {
               if (transacoes != null) {
-                this.extrato = transacoes;
+
+                this.extrato = transacoes.filter((transacao) => (
+                  (transacao.contaOrigem?.numero == this.conta.numero) ||
+                  (transacao.contaDestino?.numero == this.conta.numero)));
               }
             }
           )
