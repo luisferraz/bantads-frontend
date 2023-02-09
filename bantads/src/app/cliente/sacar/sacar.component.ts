@@ -13,13 +13,13 @@ export class SacarComponent implements OnInit {
 
   @ViewChild('formSacar') formSacar!: NgForm;
   conta!: Conta;
-  public valorSaque!: number;
+  public valorSaque! : number;
 
   constructor(
     private clienteService: ClienteService,
     private router: Router,
     private route: ActivatedRoute
-  ) {
+  ) { 
     this.conta = new Conta();
     this.valorSaque = 0;
   }
