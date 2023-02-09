@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Gerente } from 'src/app/shared';
+import { Gerente, Usuario } from 'src/app/shared';
 
 import { AdminService } from '../services';
 
@@ -26,9 +26,22 @@ export class InserirGerenteComponent implements OnInit {
 
   inserir(): void {
     if (this.formGerente.form.valid) {
-      this.adminService.inserirGerente(this.gerente).subscribe(
-        (gerente: Gerente) => {
-          this.router.navigate(['/admin/listar-gerente']);
+      // let senha = Math.random().toString(36).slice(-8);
+      let senha = 'gerente';
+      const novoUsuario: Usuario = new Usuario(
+        this.gerente.nome,
+        this.gerente.email,
+        senha,
+        'GERENTE',
+      );
+      this.adminService.inserirUsuario(novoUsuario).subscribe(
+        (usuario: Usuario) => {
+          this.gerente.usuario = usuario;
+          this.adminService.inserirGerente(this.gerente).subscribe(
+            (gerente: Gerente) => {
+              this.gerente = gerente;
+              this.router.navigate(['/admin/listar-gerente']);
+            });
         }
       );
     }

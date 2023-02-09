@@ -8,343 +8,564 @@
       "perfil": "ADMIN"
     },
     {
-      "id": 2,
-      "nome": "Gerente",
-      "email": "gerente@email.com",
+      "nome": "Gerente 1",
+      "email": "gerente1@email.com",
       "senha": "gerente",
-      "perfil": "GERENTE"
+      "perfil": "GERENTE",
+      "isActive": false,
+      "id": 2
     },
     {
-      "id": 3,
-      "nome": "Cliente",
-      "email": "cliente@email.com",
+      "nome": "Gerente 2",
+      "email": "gerente2@email.com",
+      "senha": "gerente",
+      "perfil": "GERENTE",
+      "isActive": false,
+      "id": 3
+    },
+    {
+      "nome": "Cliente 1",
+      "email": "cliente1@email.com",
       "senha": "cliente",
-      "perfil": "CLIENTE"
-    },
-    {
-      "nome": "Luis Cliente Teste",
-      "email": "luis@email.com",
-      "senha": "wrc40r34",
       "perfil": "CLIENTE",
+      "isActive": false,
       "id": 4
     },
     {
-      "nome": "segundo cliente",
-      "email": "segundo@email.com",
-      "senha": "segundo",
+      "nome": "Cliente 2",
+      "email": "cliente2@email.com",
+      "senha": "cliente",
       "perfil": "CLIENTE",
+      "isActive": false,
       "id": 5
     },
     {
-      "nome": "Novo cara teste",
-      "email": "novo@email.com",
-      "senha": "qrjxyrdg",
-      "perfil": "CLIENTE",
+      "nome": "João da Silva",
+      "email": "joao@email.com",
+      "senha": "gerente",
+      "perfil": "GERENTE",
+      "isActive": false,
       "id": 6
     },
     {
-      "nome": "Luis Cliente Teste",
-      "email": "luis@email.com",
-      "senha": "jxz97ua9",
+      "nome": "cliente novo",
+      "email": "clientenovo@email.com",
+      "senha": "cliente",
       "perfil": "CLIENTE",
       "isActive": false,
       "id": 7
+    },
+    {
+      "nome": "novogerente",
+      "email": "novogerente@email.com",
+      "senha": "gerente",
+      "perfil": "GERENTE",
+      "isActive": false,
+      "id": 8
     }
   ],
   "gerentes": [
     {
-      "nome": "gerente teste",
-      "email": "gerente@gerente.com.br",
-      "cpf": "11111111111",
-      "telefone": "11999999999",
+      "nome": "Gerente 1",
+      "email": "gerente1@email.com",
+      "cpf": "99999999999",
+      "telefone": "41999999999",
+      "usuario": {
+        "nome": "Gerente 1",
+        "email": "gerente1@email.com",
+        "senha": "gerente",
+        "perfil": "GERENTE",
+        "isActive": false,
+        "id": 2
+      },
       "id": 1
     },
     {
-      "nome": "Fran",
-      "email": "fran@fran.",
-      "cpf": "00000000000",
-      "telefone": "41090909888",
+      "nome": "Gerente 2",
+      "email": "gerente2@email.com",
+      "cpf": "22222222222",
+      "telefone": "41922222222",
+      "usuario": {
+        "nome": "Gerente 2",
+        "email": "gerente2@email.com",
+        "senha": "gerente",
+        "perfil": "GERENTE",
+        "isActive": false,
+        "id": 3
+      },
       "id": 2
     },
     {
-      "nome": "Luis",
-      "email": "luisgerente@email.com",
-      "cpf": "11111111111",
-      "telefone": "41999999999",
+      "nome": "João da Silva",
+      "email": "joao@email.com",
+      "cpf": "66666666666",
+      "telefone": "41966666666",
+      "usuario": {
+        "nome": "João da Silva",
+        "email": "joao@email.com",
+        "senha": "gerente",
+        "perfil": "GERENTE",
+        "isActive": false,
+        "id": 6
+      },
       "id": 3
     }
   ],
   "clientes": [
     {
-      "nome": "Luis Cliente Teste",
-      "email": "luis@email.com",
-      "cpf": "11111111111",
-      "telefone": "11111111111",
-      "salario": 5000,
+      "nome": "Cliente novo1",
+      "email": "cliente1@email.com",
+      "cpf": "77777777777",
+      "telefone": "41977777777",
+      "salario": 1000,
       "id": 1,
       "usuario": {
-        "nome": "Luis Cliente Teste",
-        "email": "luis@email.com",
-        "senha": "jxz97ua9",
+        "nome": "Cliente 1",
+        "email": "cliente1@email.com",
+        "senha": "cliente",
         "perfil": "CLIENTE",
         "isActive": false,
-        "id": 7
+        "id": 4
       },
-      "endereco": "Riua centro 999"
+      "endereco": "Rua X"
     },
     {
-      "nome": "segundo cliente",
-      "email": "segundo@email.com",
-      "cpf": "77777777777",
-      "telefone": "41444444444",
-      "salario": 3000,
+      "nome": "Cliente 2",
+      "email": "cliente2@email.com",
+      "cpf": "33333333333",
+      "telefone": "41933333333",
+      "salario": 1500,
       "id": 2,
       "usuario": {
-        "nome": "segundo cliente",
-        "email": "segundo@email.com",
-        "senha": "qp8uhutz",
+        "nome": "Cliente 2",
+        "email": "cliente2@email.com",
+        "senha": "cliente",
         "perfil": "CLIENTE",
+        "isActive": false,
         "id": 5
       }
     },
     {
-      "nome": "Novo cara teste",
-      "email": "novo@email.com",
-      "cpf": "66666666666",
-      "telefone": "49111111111",
-      "salario": 9999.99,
+      "nome": "cliente novo",
+      "email": "clientenovo@email.com",
+      "cpf": "33333333333",
+      "telefone": "41978888888",
+      "salario": 1000,
       "id": 3,
       "usuario": {
-        "nome": "Novo cara teste",
-        "email": "novo@email.com",
-        "senha": "qrjxyrdg",
+        "nome": "cliente novo",
+        "email": "clientenovo@email.com",
+        "senha": "cliente",
         "perfil": "CLIENTE",
-        "id": 6
+        "isActive": false,
+        "id": 7
       }
     }
   ],
   "contas": [
     {
-      "numero": 254,
+      "numero": 485,
       "cliente": {
-        "nome": "Luis Cliente Teste",
-        "email": "luis@email.com",
-        "cpf": "11111111111",
-        "telefone": "11111111111",
+        "nome": "Cliente 1",
+        "email": "cliente1@email.com",
+        "cpf": "77777777777",
+        "telefone": "41977777777",
         "salario": 5000,
         "id": 1
       },
-      "limite": 2500,
-      "saldo": -214.72000000000116,
+      "limite": 500,
+      "saldo": 240.01000000000022,
       "gerente": {
-        "nome": "gerente teste",
-        "email": "gerente@gerente.com.br",
-        "cpf": "11111111111",
-        "telefone": "11999999999",
-        "id": 1
+        "nome": "Gerente 2",
+        "email": "gerente2@email.com",
+        "cpf": "22222222222",
+        "telefone": "41922222222",
+        "usuario": {
+          "nome": "Gerente 2",
+          "email": "gerente2@email.com",
+          "senha": "gerente",
+          "perfil": "GERENTE",
+          "isActive": false,
+          "id": 3
+        },
+        "id": 2
       },
-      "id": 1,
-      "ativa": true
+      "ativa": true,
+      "id": 1
     },
     {
-      "numero": 543,
+      "numero": 774,
       "cliente": {
-        "nome": "segundo cliente",
-        "email": "segundo@email.com",
-        "cpf": "77777777777",
-        "telefone": "41444444444",
-        "salario": 3000,
+        "nome": "Cliente 2",
+        "email": "cliente2@email.com",
+        "cpf": "33333333333",
+        "telefone": "41933333333",
+        "salario": 1500,
         "id": 2
       },
-      "limite": 1500,
-      "saldo": 1159,
+      "limite": 750,
+      "saldo": 200,
       "gerente": {
-        "nome": "Fran",
-        "email": "fran@fran.",
-        "cpf": "00000000000",
-        "telefone": "41090909888",
+        "nome": "Gerente 2",
+        "email": "gerente2@email.com",
+        "cpf": "22222222222",
+        "telefone": "41922222222",
+        "usuario": {
+          "nome": "Gerente 2",
+          "email": "gerente2@email.com",
+          "senha": "gerente",
+          "perfil": "GERENTE",
+          "isActive": false,
+          "id": 3
+        },
         "id": 2
       },
+      "ativa": true,
       "id": 2
     },
     {
-      "numero": 64,
+      "numero": 141,
       "cliente": {
-        "nome": "Novo cara teste",
-        "email": "novo@email.com",
-        "cpf": "66666666666",
-        "telefone": "49111111111",
-        "salario": 9999.99,
+        "nome": "cliente novo",
+        "email": "clientenovo@email.com",
+        "cpf": "33333333333",
+        "telefone": "41978888888",
+        "salario": 1000,
         "id": 3
       },
-      "limite": 4999.995,
-      "saldo": 0,
+      "limite": 500,
+      "saldo": 150,
       "gerente": {
-        "nome": "Fran",
-        "email": "fran@fran.",
-        "cpf": "00000000000",
-        "telefone": "41090909888",
-        "id": 2
+        "nome": "João da Silva",
+        "email": "joao@email.com",
+        "cpf": "66666666666",
+        "telefone": "41966666666",
+        "usuario": {
+          "nome": "João da Silva",
+          "email": "joao@email.com",
+          "senha": "gerente",
+          "perfil": "GERENTE",
+          "isActive": false,
+          "id": 6
+        },
+        "id": 3
       },
+      "ativa": true,
       "id": 3
     }
   ],
   "transacoes": [
     {
-      "dataHora": "2022-12-19T22:28:34.777Z",
-      "tipo": "DEPÓSITO",
-      "valor": 1500,
-      "contaDestino": {
-        "numero": 254,
+      "dataHora": "2022-12-20T20:39:13.354Z",
+      "tipo": "SAQUE",
+      "valor": 2499,
+      "contaOrigem": {
+        "numero": 485,
         "cliente": {
-          "nome": "Luis Cliente Teste",
-          "email": "luis@email.com",
-          "cpf": "11111111111",
-          "telefone": "11111111111",
+          "nome": "Cliente 1",
+          "email": "cliente1@email.com",
+          "cpf": "77777777777",
+          "telefone": "41977777777",
           "salario": 5000,
           "id": 1
         },
         "limite": 2500,
-        "saldo": 9135.279999999999,
+        "saldo": -2499,
         "gerente": {
-          "nome": "gerente teste",
-          "email": "gerente@gerente.com.br",
-          "cpf": "11111111111",
-          "telefone": "11999999999",
-          "id": 1
+          "nome": "Gerente 2",
+          "email": "gerente2@email.com",
+          "cpf": "22222222222",
+          "telefone": "41922222222",
+          "usuario": {
+            "nome": "Gerente 2",
+            "email": "gerente2@email.com",
+            "senha": "gerente",
+            "perfil": "GERENTE",
+            "isActive": false,
+            "id": 3
+          },
+          "id": 2
         },
+        "ativa": true,
         "id": 1
       },
       "id": 1
     },
     {
-      "dataHora": "2022-12-19T22:28:51.423Z",
+      "dataHora": "2022-12-20T20:39:33.900Z",
       "tipo": "SAQUE",
-      "valor": 150,
+      "valor": 0.99,
       "contaOrigem": {
-        "numero": 254,
+        "numero": 485,
         "cliente": {
-          "nome": "Luis Cliente Teste",
-          "email": "luis@email.com",
-          "cpf": "11111111111",
-          "telefone": "11111111111",
+          "nome": "Cliente 1",
+          "email": "cliente1@email.com",
+          "cpf": "77777777777",
+          "telefone": "41977777777",
           "salario": 5000,
           "id": 1
         },
         "limite": 2500,
-        "saldo": 8985.279999999999,
+        "saldo": -2499.99,
         "gerente": {
-          "nome": "gerente teste",
-          "email": "gerente@gerente.com.br",
-          "cpf": "11111111111",
-          "telefone": "11999999999",
-          "id": 1
+          "nome": "Gerente 2",
+          "email": "gerente2@email.com",
+          "cpf": "22222222222",
+          "telefone": "41922222222",
+          "usuario": {
+            "nome": "Gerente 2",
+            "email": "gerente2@email.com",
+            "senha": "gerente",
+            "perfil": "GERENTE",
+            "isActive": false,
+            "id": 3
+          },
+          "id": 2
         },
+        "ativa": true,
         "id": 1
       },
       "id": 2
     },
     {
-      "dataHora": "2022-12-19T22:29:12.658Z",
-      "tipo": "TRANSFERÊNCIA",
-      "valor": 1200,
-      "contaOrigem": {
-        "numero": 254,
+      "dataHora": "2022-12-20T20:39:43.375Z",
+      "tipo": "DEPÓSITO",
+      "valor": 3000,
+      "contaDestino": {
+        "numero": 485,
         "cliente": {
-          "nome": "Luis Cliente Teste",
-          "email": "luis@email.com",
-          "cpf": "11111111111",
-          "telefone": "11111111111",
+          "nome": "Cliente 1",
+          "email": "cliente1@email.com",
+          "cpf": "77777777777",
+          "telefone": "41977777777",
           "salario": 5000,
           "id": 1
         },
         "limite": 2500,
-        "saldo": 7785.279999999999,
+        "saldo": 500.0100000000002,
         "gerente": {
-          "nome": "gerente teste",
-          "email": "gerente@gerente.com.br",
-          "cpf": "11111111111",
-          "telefone": "11999999999",
-          "id": 1
+          "nome": "Gerente 2",
+          "email": "gerente2@email.com",
+          "cpf": "22222222222",
+          "telefone": "41922222222",
+          "usuario": {
+            "nome": "Gerente 2",
+            "email": "gerente2@email.com",
+            "senha": "gerente",
+            "perfil": "GERENTE",
+            "isActive": false,
+            "id": 3
+          },
+          "id": 2
         },
+        "ativa": true,
         "id": 1
-      },
-      "contaDestino": {
-        "numero": 543,
-        "cliente": {
-          "nome": "segundo cliente",
-          "email": "segundo@email.com",
-          "cpf": "77777777777",
-          "telefone": "41444444444",
-          "salario": 3000,
-          "id": 2
-        },
-        "limite": 1500,
-        "saldo": 1159,
-        "gerente": {
-          "nome": "Fran",
-          "email": "fran@fran.",
-          "cpf": "00000000000",
-          "telefone": "41090909888",
-          "id": 2
-        },
-        "id": 2
       },
       "id": 3
     },
     {
-      "dataHora": "2022-12-19T22:49:01.108Z",
-      "tipo": "SAQUE",
-      "valor": 8000,
+      "dataHora": "2022-12-20T20:40:17.198Z",
+      "tipo": "TRANSFERÊNCIA",
+      "valor": 200,
       "contaOrigem": {
-        "numero": 254,
+        "numero": 485,
         "cliente": {
-          "nome": "Luis Cliente Teste",
-          "email": "luis@email.com",
-          "cpf": "11111111111",
-          "telefone": "11111111111",
+          "nome": "Cliente 1",
+          "email": "cliente1@email.com",
+          "cpf": "77777777777",
+          "telefone": "41977777777",
           "salario": 5000,
           "id": 1
         },
         "limite": 2500,
-        "saldo": -214.72000000000116,
+        "saldo": 300.0100000000002,
         "gerente": {
-          "nome": "gerente teste",
-          "email": "gerente@gerente.com.br",
-          "cpf": "11111111111",
-          "telefone": "11999999999",
-          "id": 1
+          "nome": "Gerente 2",
+          "email": "gerente2@email.com",
+          "cpf": "22222222222",
+          "telefone": "41922222222",
+          "usuario": {
+            "nome": "Gerente 2",
+            "email": "gerente2@email.com",
+            "senha": "gerente",
+            "perfil": "GERENTE",
+            "isActive": false,
+            "id": 3
+          },
+          "id": 2
         },
+        "ativa": true,
         "id": 1
+      },
+      "contaDestino": {
+        "numero": 774,
+        "cliente": {
+          "nome": "Cliente 2",
+          "email": "cliente2@email.com",
+          "cpf": "33333333333",
+          "telefone": "41933333333",
+          "salario": 1500,
+          "id": 2
+        },
+        "limite": 750,
+        "saldo": 200,
+        "gerente": {
+          "nome": "Gerente 2",
+          "email": "gerente2@email.com",
+          "cpf": "22222222222",
+          "telefone": "41922222222",
+          "usuario": {
+            "nome": "Gerente 2",
+            "email": "gerente2@email.com",
+            "senha": "gerente",
+            "perfil": "GERENTE",
+            "isActive": false,
+            "id": 3
+          },
+          "id": 2
+        },
+        "ativa": true,
+        "id": 2
       },
       "id": 4
     },
     {
-      "dataHora": "2022-12-20T00:41:30.105Z",
-      "tipo": "SAQUE",
-      "valor": 0,
-      "contaOrigem": {
-        "numero": 254,
+      "dataHora": "2022-12-20T22:49:11.247Z",
+      "tipo": "DEPÓSITO",
+      "valor": 100,
+      "contaDestino": {
+        "numero": 485,
         "cliente": {
-          "nome": "Luis Cliente Teste",
-          "email": "luis@email.com",
-          "cpf": "11111111111",
-          "telefone": "11111111111",
+          "nome": "Cliente 1",
+          "email": "cliente1@email.com",
+          "cpf": "77777777777",
+          "telefone": "41977777777",
           "salario": 5000,
           "id": 1
         },
-        "limite": 2500,
-        "saldo": -214.72000000000116,
+        "limite": 500,
+        "saldo": 400.0100000000002,
         "gerente": {
-          "nome": "gerente teste",
-          "email": "gerente@gerente.com.br",
-          "cpf": "11111111111",
-          "telefone": "11999999999",
-          "id": 1
+          "nome": "Gerente 2",
+          "email": "gerente2@email.com",
+          "cpf": "22222222222",
+          "telefone": "41922222222",
+          "usuario": {
+            "nome": "Gerente 2",
+            "email": "gerente2@email.com",
+            "senha": "gerente",
+            "perfil": "GERENTE",
+            "isActive": false,
+            "id": 3
+          },
+          "id": 2
         },
+        "ativa": true,
         "id": 1
       },
       "id": 5
+    },
+    {
+      "dataHora": "2022-12-20T22:49:30.572Z",
+      "tipo": "SAQUE",
+      "valor": 10,
+      "contaOrigem": {
+        "numero": 485,
+        "cliente": {
+          "nome": "Cliente 1",
+          "email": "cliente1@email.com",
+          "cpf": "77777777777",
+          "telefone": "41977777777",
+          "salario": 5000,
+          "id": 1
+        },
+        "limite": 500,
+        "saldo": 390.0100000000002,
+        "gerente": {
+          "nome": "Gerente 2",
+          "email": "gerente2@email.com",
+          "cpf": "22222222222",
+          "telefone": "41922222222",
+          "usuario": {
+            "nome": "Gerente 2",
+            "email": "gerente2@email.com",
+            "senha": "gerente",
+            "perfil": "GERENTE",
+            "isActive": false,
+            "id": 3
+          },
+          "id": 2
+        },
+        "ativa": true,
+        "id": 1
+      },
+      "id": 6
+    },
+    {
+      "dataHora": "2022-12-20T22:50:58.936Z",
+      "tipo": "TRANSFERÊNCIA",
+      "valor": 150,
+      "contaOrigem": {
+        "numero": 485,
+        "cliente": {
+          "nome": "Cliente 1",
+          "email": "cliente1@email.com",
+          "cpf": "77777777777",
+          "telefone": "41977777777",
+          "salario": 5000,
+          "id": 1
+        },
+        "limite": 500,
+        "saldo": 240.01000000000022,
+        "gerente": {
+          "nome": "Gerente 2",
+          "email": "gerente2@email.com",
+          "cpf": "22222222222",
+          "telefone": "41922222222",
+          "usuario": {
+            "nome": "Gerente 2",
+            "email": "gerente2@email.com",
+            "senha": "gerente",
+            "perfil": "GERENTE",
+            "isActive": false,
+            "id": 3
+          },
+          "id": 2
+        },
+        "ativa": true,
+        "id": 1
+      },
+      "contaDestino": {
+        "numero": 141,
+        "cliente": {
+          "nome": "cliente novo",
+          "email": "clientenovo@email.com",
+          "cpf": "33333333333",
+          "telefone": "41978888888",
+          "salario": 1000,
+          "id": 3
+        },
+        "limite": 500,
+        "saldo": 150,
+        "gerente": {
+          "nome": "João da Silva",
+          "email": "joao@email.com",
+          "cpf": "66666666666",
+          "telefone": "41966666666",
+          "usuario": {
+            "nome": "João da Silva",
+            "email": "joao@email.com",
+            "senha": "gerente",
+            "perfil": "GERENTE",
+            "isActive": false,
+            "id": 6
+          },
+          "id": 3
+        },
+        "ativa": true,
+        "id": 3
+      },
+      "id": 7
     }
   ]
 }

@@ -9,33 +9,22 @@ import { GerenteService } from '../services';
   styleUrls: ['./consultar-todos-clientes.component.css']
 })
 export class ConsultarTodosClientesComponent implements OnInit {
-
   contas: Conta[] = [];
 
-  constructor(private gerenteService: GerenteService, private loginService : LoginService) { }
+  constructor(private gerenteService: GerenteService, private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.gerenteService.buscarGerentePorUsuario(this.loginService.usuarioLogado).subscribe(
-      (gerentes: Gerente[]) => {
-        if ((gerentes != null) && (gerentes.length) > 0) {
-          let gerente = gerentes.filter(gerente => gerente.email === this.loginService.usuarioLogado.email);
-          this.gerenteService.gerenteLogado = gerente[0];
+    this.gerenteService.buscaContasPorGerente(this.gerenteService.gerenteLogado).subscribe(
+      (contas: Conta[]) => {
+        if (contas != null) {
+          this.contas = contas.sort((a, b) => (a.cliente?.nome! < b.cliente?.nome!) ? -1 : 1);
         }
       }
     );
-    this.contas = this.listarTodosClientes();
   }
-   
-  listarTodosClientes(): Conta[] {
-    this.gerenteService.listarContas().subscribe(
-      (data: Conta[]) => {
-        if(data == null) {
-          this.contas = []
-        } else {
-          this.contas = data.filter(conta => conta.gerente?.id === this.gerenteService.gerenteLogado.id);
-        }
-      });
-      return this.contas
+
+  pesquisarCliente(valor: string): void {
+
   }
 
 }

@@ -50,7 +50,8 @@ export class AprovarClienteComponent implements OnInit {
     this.clienteService.atualizarConta(this.conta).subscribe(
       (conta: Conta) => {
         if (conta != null) {
-          let senha = Math.random().toString(36).slice(-8);
+          // let senha = Math.random().toString(36).slice(-8);
+          let senha = 'cliente';
           const novoUsuario: Usuario = new Usuario(
             this.cliente.nome,
             this.cliente.email,

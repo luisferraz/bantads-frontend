@@ -56,11 +56,11 @@
           <tr *ngFor="let conta of contas">
             <td>{{ conta.cliente?.nome }}</td>
             <td>{{ conta.cliente?.cpf! | mask : "CPF_CNPJ" }}</td>
-            <td>{{ conta.cliente?.endereco! }}</td>
-            <td>{{ conta.saldo }}</td>
+            <td>{{ conta.cliente?.endereco }}</td>
+            <td>{{ conta.saldo | currency: "BRL" }}</td>
             <td class="text-center" style="width: 300px">
               <a href="#" title="Detalhes" alt="Detalhes" class="btn btn-xs btn-info">
-                <i class="fa fa-plus" aria-hidden="true"></i>  Detalhes do Cliente
+                <i class="fa fa-plus" aria-hidden="true"></i> Detalhes do Cliente
               </a>
             </td>
           </tr>
@@ -76,7 +76,7 @@
     <!-- ============================================================== -->
     <footer class="footer text-center">
       2022 © Bantads UFPR
-      
+
     </footer>
     <!-- ============================================================== -->
     <!-- End footer -->
