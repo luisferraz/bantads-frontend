@@ -26,24 +26,32 @@ export class InserirGerenteComponent implements OnInit {
 
   inserir(): void {
     if (this.formGerente.form.valid) {
+
+      //Chama a insercao de gerente que automaticamente vai criar um novo usuario pra ele
+      this.adminService.inserirGerente(this.gerente).subscribe(
+        (gerente: Gerente) => {
+          this.gerente = gerente;
+          this.router.navigate(['/admin/listar-gerente']);
+        });
+
       // let senha = Math.random().toString(36).slice(-8);
-      let senha = 'gerente';
-      const novoUsuario: Usuario = new Usuario(
-        this.gerente.nome,
-        this.gerente.email,
-        senha,
-        'GERENTE',
-      );
-      this.adminService.inserirUsuario(novoUsuario).subscribe(
-        (usuario: Usuario) => {
-          this.gerente.usuario = usuario;
-          this.adminService.inserirGerente(this.gerente).subscribe(
-            (gerente: Gerente) => {
-              this.gerente = gerente;
-              this.router.navigate(['/admin/listar-gerente']);
-            });
-        }
-      );
+      // // let senha = 'gerente';
+      // const novoUsuario: Usuario = new Usuario(
+      //   this.gerente.nome,
+      //   this.gerente.email,
+      //   senha,
+      //   'GERENTE',
+      // );
+      // this.adminService.inserirUsuario(novoUsuario).subscribe(
+      //   (usuario: Usuario) => {
+      //     this.gerente.usuario = usuario;
+      //     this.adminService.inserirGerente(this.gerente).subscribe(
+      //       (gerente: Gerente) => {
+      //         this.gerente = gerente;
+      //         this.router.navigate(['/admin/listar-gerente']);
+      //       });
+      //   }
+      // );
     }
   }
 

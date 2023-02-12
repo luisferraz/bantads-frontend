@@ -31,6 +31,4 @@ export class RelatorioClientesComponent implements OnInit {
     );
     return this.contas;
   }
-
-
 }
