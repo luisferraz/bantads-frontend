@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Login, Usuario } from 'src/app/shared';
+import { Login, LoginResponse } from 'src/app/shared';
 import { LoginService } from '../services/login.service';
 
 @Component({
@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: any) => {
       this.message = params['error'];
+      // this.message = params['message'];
     });
   }
 
@@ -35,13 +36,17 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     if (this.formLogin.form.valid) {
       this.loginService.login(this.login).subscribe(
-        (usuarios: Usuario[]) => {
-          if ((usuarios != null) && (usuarios.length > 0)) {
-            let usu = usuarios[0];
-            this.loginService.usuarioLogado = usu;
-            this.loading = false;
-            this.router.navigate([`${usu.perfil?.toLowerCase()}`]);
-          } else {
+        (loginResponse: LoginResponse) => {
+          if (loginResponse != null) {
+            let { auth: isAuth, token, usuario: usu } = loginResponse;
+            if (isAuth) {
+              this.loginService.userToken = token!;
+              this.loginService.usuarioLogado = usu!;
+              this.loading = false;
+              this.router.navigate([`${usu!.perfil?.toLowerCase()}`]);
+            }
+          }
+          else {
             this.message = 'Usuário/Senha inválidos.';
           }
         });

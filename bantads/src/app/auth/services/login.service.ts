@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, map, of, take } from 'rxjs';
-import { Usuario, Login } from 'src/app/shared';
+import { Usuario, Login, LoginResponse } from 'src/app/shared';
+import { environment as env } from 'src/environments/environment';
 
 const LS_CHAVE: string = 'usuarioLogado';
+const LS_CHAVE_TOKEN: string = 'usuarioLogadoToken';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  BASE_URL = "http://localhost:3000/usuarios/";
+  BASE_URL: string = env.BASE_URL + "login/";
 
   constructor(
     private httpClient: HttpClient
@@ -23,19 +25,21 @@ export class LoginService {
     localStorage[LS_CHAVE] = JSON.stringify(usuario);
   }
 
-  logout() {
-    delete localStorage[LS_CHAVE];
+  public get userToken(): string {
+    let token = localStorage[LS_CHAVE_TOKEN];
+    return token;
   }
 
-  login(login: Login): Observable<Usuario[]> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      params: new HttpParams().append('email', login.email!).append('senha', login.senha!)
-    };
+  public set userToken(token: string) {
+    localStorage[LS_CHAVE_TOKEN] = token.trim();
+  }
 
-    return this.httpClient.get<Usuario[]>(this.BASE_URL, httpOptions);
+  logout() {
+    delete localStorage[LS_CHAVE];
+    delete localStorage[LS_CHAVE_TOKEN];
+  }
 
+  login(login: Login): Observable<LoginResponse> {
+    return this.httpClient.post<LoginResponse>(this.BASE_URL, JSON.stringify(login));
   }
 }

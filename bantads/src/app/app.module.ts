@@ -10,8 +10,9 @@ import { ClienteModule } from './cliente';
 import { ClienteService } from './cliente/services';
 import { GerenteModule } from './gerente';
 import { GerenteService } from './gerente/services';
+import { ErrorHandlerService } from "./httperror-handler/services";
 import { SharedModule } from './shared';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
@@ -43,7 +44,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     AdminService,
     ClienteService,
     GerenteService,
-    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }
+    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerService, multi: true }
   ],
   bootstrap: [AppComponent]
 })
